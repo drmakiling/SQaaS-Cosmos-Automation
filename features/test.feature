@@ -4,7 +4,7 @@ Feature: Behave with Cosmos
     @test @regression @smoketest
     Scenario: test
         Given user is on "Dev"
-        And the user is logged in as "USER1"
+        And the user is logged in as "STUDYBA1"
         Then create or select a case a study
         Then add a country with default settings
         When cancel the date of birth format modal
