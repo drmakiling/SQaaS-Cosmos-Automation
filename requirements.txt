@@ -1,4 +1,4 @@
-playwright==1.42.2
-behave==1.2.7
-behave-html-formatter==0.1.0
-python-dotenv==1.0.0
+playwright==1.33
+behave==1.2.6
+behave-html-formatter==0.9.10
+python-dotenv==1.0.1
