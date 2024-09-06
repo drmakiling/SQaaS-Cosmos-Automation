@@ -11,5 +11,5 @@ print(f"Loading environment variables from: {env_file_path}")
 load_dotenv(dotenv_path=env_file_path)
 
 # Print loaded environment variables
-print("USER1_ACCOUNT:", os.getenv('USER1_ACCOUNT'))
-print("USER1_PASSWORD:", os.getenv('USER1_PASSWORD'))
+print("STUDYBA1_ACCOUNT:", os.getenv('STUDYBA1_ACCOUNT'))
+print("STUDYBA1_PASSWORD:", os.getenv('STUDYBA1_PASSWORD'))
