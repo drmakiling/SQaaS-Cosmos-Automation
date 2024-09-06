@@ -1,0 +1,110 @@
+[
+{
+  "elements": [
+    {
+      "keyword": "Scenario",
+      "location": "features/test.feature:5",
+      "name": "test",
+      "status": "failed",
+      "steps": [
+        {
+          "keyword": "Given",
+          "location": "features/test.feature:6",
+          "match": {
+            "arguments": [
+              {
+                "name": "env",
+                "value": "Dev"
+              }
+            ],
+            "location": "features/steps/test_step.py:11"
+          },
+          "name": "user is on \"Dev\"",
+          "result": {
+            "duration": 0.8622913360595703,
+            "status": "passed"
+          },
+          "step_type": "given"
+        },
+        {
+          "keyword": "And",
+          "location": "features/test.feature:7",
+          "match": {
+            "arguments": [
+              {
+                "name": "User",
+                "value": "USER1"
+              }
+            ],
+            "location": "features/steps/test_step.py:19"
+          },
+          "name": "the user is logged in as \"USER1\"",
+          "result": {
+            "duration": 6.039275407791138,
+            "status": "passed"
+          },
+          "step_type": "given"
+        },
+        {
+          "keyword": "Then",
+          "location": "features/test.feature:8",
+          "match": {
+            "arguments": [],
+            "location": "features/steps/test_step.py:34"
+          },
+          "name": "create or select a case a study",
+          "result": {
+            "duration": 7.616344928741455,
+            "status": "passed"
+          },
+          "step_type": "then"
+        },
+        {
+          "keyword": "Then",
+          "location": "features/test.feature:9",
+          "match": {
+            "arguments": [],
+            "location": "features/steps/test_step.py:49"
+          },
+          "name": "add a country with default settings",
+          "result": {
+            "duration": 0.00027871131896972656,
+            "error_message": [
+              "Traceback (most recent call last):",
+              "  File \"/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/behave/model.py\", line 1329, in run",
+              "    match.run(runner.context)",
+              "  File \"/home/linuxbrew/.linuxbrew/opt/python@3.9/lib/python3.9/site-packages/behave/matchers.py\", line 98, in run",
+              "    self.func(context, *args, **kwargs)",
+              "  File \"features/steps/test_step.py\", line 55, in add_country_with_default_settings",
+              "    cosmos_country.add_country_simple()",
+              "  File \"/home/kgirard-admin/Downloads/learning-Automation-RT-master/pages/Cosmos_Country.py\", line 42, in add_country_simple",
+              "    self.page.locator(self.countries_tab).click()",
+              "AttributeError: 'Cosmos_Country' object has no attribute 'page'",
+              "",
+              "Captured stdout:",
+              "Test failed: 'Cosmos_Country' object has no attribute 'page'"
+            ],
+            "status": "failed"
+          },
+          "step_type": "then"
+        },
+        {
+          "keyword": "When",
+          "location": "features/test.feature:10",
+          "name": "cancel the date of birth format modal",
+          "step_type": "when"
+        }
+      ],
+      "tags": [
+        "test"
+      ],
+      "type": "scenario"
+    }
+  ],
+  "keyword": "Feature",
+  "location": "features/test.feature:1",
+  "name": "Behave with Cosmos",
+  "status": "failed",
+  "tags": []
+}
+]
