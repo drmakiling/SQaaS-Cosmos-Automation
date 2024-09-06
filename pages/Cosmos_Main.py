@@ -25,7 +25,7 @@ class Cosmos_Main:
         wait_and_click_element(self.page, self.create_new_study)
         #self.page.locator(self.sign_in_button).click()
         # Click on the 'Create from Blank' form
-        wait_and_click_element(self.page, self.creatze_new_form)
+        wait_and_click_element(self.page, self.create_new_form)
 
         # Fill in the form with the current time
         wait_for_element(self.page, self.form_time).fill(str(time.time()))
