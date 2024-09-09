@@ -74,7 +74,7 @@ class Cosmos_Country:
 
         # Verify that the modal is no longer visible
         expect(self.page.locator(self.date_of_birth_format_modal)).not_to_be_visible()
-    
+
     def configure_dob_format(self, case: str):
         self.wait_and_click_element(self.date_of_birth_format_button)
         self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
