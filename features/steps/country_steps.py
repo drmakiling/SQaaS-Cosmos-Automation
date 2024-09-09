@@ -29,9 +29,9 @@ def cancel_date_of_birth_format_modal(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@When('verify the updated country dob format')
-def verify_updated_country_dob_format(context):
-    context.cosmos_country.configure_dob_format()
+@When('verify the updated country dob format for {case}')
+def verify_updated_country_dob_format(context, case):
+    context.cosmos_country.configure_dob_format(case)
 
 @when('open delete country modal')
 def open_delete_country_modal(context):
