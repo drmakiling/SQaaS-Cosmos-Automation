@@ -1,3 +1,5 @@
+import time
+
 from playwright.sync_api import Page, expect
 
 class Cosmos_Country:
@@ -41,10 +43,12 @@ class Cosmos_Country:
         self.page.locator(self.countries_tab).click()
         self.page.locator(self.add_country_button).click()
         self.page.locator(self.country_code_field).click()
+        time.sleep(2)
         self.page.keyboard.press("ArrowDown")
         self.page.keyboard.press("Enter")
 
         self.page.locator(self.languages_field).click()
+        time.sleep(2)
         self.page.keyboard.press("ArrowDown")
         self.page.keyboard.press("Enter")
         self.page.keyboard.press("Escape")
@@ -53,6 +57,7 @@ class Cosmos_Country:
         if self.page.locator(self.dob_format_rtsm).is_disabled():
             self.page.locator(self.dob_format_custom).click()
             self.page.locator(self.select_format_dropdown).click()
+            time.sleep(2)
             self.page.keyboard.press("ArrowDown")
             self.page.keyboard.press("Enter")
         else:
@@ -70,15 +75,24 @@ class Cosmos_Country:
         # Verify that the modal is no longer visible
         expect(self.page.locator(self.date_of_birth_format_modal)).not_to_be_visible()
 
-    def configure_dob_format(self):
+    def configure_dob_format(self, case: str):
         self.wait_and_click_element(self.date_of_birth_format_button)
         self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
 
         if self.page.locator(self.save_button).is_disabled():
-            self.wait_and_click_element(self.date_of_birth_custom_format_button)
-            self.wait_and_click_element(self.save_button)
-            self.wait_and_click_element(self.date_of_birth_format_button)
-            self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
+            if case == "3412":
+                # First set of actions
+                self.wait_and_click_element(self.date_of_birth_custom_format_button)
+                self.wait_and_click_element(self.save_button)
+                self.wait_and_click_element(self.date_of_birth_format_button)
+                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
+            elif case == "3413":
+                # Second set of actions
+                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
+                self.wait_and_click_element(self.save_button)
+                self.wait_and_click_element(self.date_of_birth_format_button)
+                self.wait_and_click_element(self.date_of_birth_custom_format_button)
 
         self.wait_and_click_element(self.save_button)
+
 
