@@ -32,3 +32,16 @@ def cancel_date_of_birth_format_modal(context):
 @When('verify the updated country dob format for {case}')
 def verify_updated_country_dob_format(context, case):
     context.cosmos_country.configure_dob_format(case)
+
+@when('open delete country modal')
+def open_delete_country_modal(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the open_delete_country_modal method
+        cosmos_country.open_delete_country_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
