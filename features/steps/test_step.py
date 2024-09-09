@@ -2,7 +2,6 @@ import re, time
 from behave import *
 from pages.Cosmos_Main import Cosmos_Main
 from pages.common_Login import Cosmos_Login_Page
-from pages.Cosmos_Country import Cosmos_Country
 import os
 from dotenv import load_dotenv
 from behave import given
@@ -46,28 +45,4 @@ def create_case_study(context):
         raise
         time.sleep(99999)  # Pause to keep the browser open
 
-@then('add a country with default settings')
-def add_country_with_default_settings(context):
-    try:
-        # Instantiate Cosmos_Country with the page object from the context
-        cosmos_country = Cosmos_Country(context.page)
-        # Call the add_country_simple method to perform the actions
-        cosmos_country.add_country_simple()
 
-    except Exception as e:
-        print(f"Test failed: {e}")
-        raise  # Raise the exception to ensure failure is reported
-        time.sleep(99999)  # Pause to keep the browser open
-
-@when('cancel the date of birth format modal')
-def cancel_date_of_birth_format_modal(context):
-    try:
-        # Instantiate Cosmos_Country with the page object from the context
-        cosmos_country = Cosmos_Country(context.page)
-        # Call the cancel_date_of_birth_format_modal method
-        cosmos_country.cancel_date_of_birth_format_modal()
-
-    except Exception as e:
-        print(f"Test failed: {e}")
-        raise  # Raise the exception to ensure failure is reported
-        time.sleep(99999)  # Pause to keep the browser open
