@@ -71,3 +71,16 @@ def cancel_date_of_birth_format_modal(context):
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
+
+@when('open delete country modal')
+def open_delete_country_modal(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the open_delete_country_modal method
+        cosmos_country.open_delete_country_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
