@@ -41,3 +41,12 @@ Feature: Behave with Cosmos
         When open delete country modal
 
 
+    #3517
+    @test @country
+    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and User_views_a_draft_study and On_Countries_section and [Not] On_{Edit}_Country_modal_with_edits When Click_Country_Cancel_button Then [Not] Verify_Country_Cancel_popup_displayed
+        Given the user is loggeed in as "STUYBA1"
+        Then create or select a case a study
+        Then add a country with default settings
+        And edit an existing countries record
+        When click Cancel button
+        Then verify Countries cancel popup is not displayed

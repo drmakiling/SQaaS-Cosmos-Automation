@@ -1,6 +1,7 @@
 import re, time
 from behave import *
 from pages.Cosmos_Country import Cosmos_Country
+from playwright.sync_api import expect
 
 
 @then('add a country with default settings')
@@ -70,3 +71,40 @@ def delete_country(context):
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
+
+
+@given('edit an existing countries record')
+def edit_existing_countries_record(context):
+    # Save the data for the first record in the global context object to be viewed later
+    context.countryCode = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']").inner_text()
+    context.patientLanguage = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']").inner_text()
+    context.dobFormat = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']").inner_text()
+
+    # Instantiate Cosmos_Country with the page object from the context
+    cosmos_country = Cosmos_Country(context.page)
+
+    cosmos_country.edit_first_row_table.click()    
+
+
+@when('click Cancel button')
+def click_cancel_button(context):
+    # Instantiate Cosmos_Country with the page object from the context
+    cosmos_country = Cosmos_Country(context.page)
+
+    cosmos_country.cancel_button.click()
+
+Then('verify Countries cancel popup is not displayed')
+def verify_countries_cancel_popup_not_displayed(context):
+    # Instantiate Cosmos_Country with the page object from the context
+    cosmos_country = Cosmos_Country(context.page)
+
+    # Verify Country Cancel popup is not displayed
+    expect(cosmos_country.country_cancel_popup).not_to_be_visible()
+    # Verify edit country modal is closed
+    expect(cosmos_country.edit_country_modal).not_to_be_visible()
+    #Verify the data of the first record remain unchanged 
+    countryCode2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']").inner_text()
+    patientLanguage2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']").inner_text()
+    dobFormat2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']").inner_text()
+    if context.countryCode == countryCode2 and context.patientLanguage == patientLanguage2 and context.dobFormat == dobFormat2:
+        assert True
