@@ -11,7 +11,7 @@ def playwright(context):
 
 def before_all(context):
     use_fixture(playwright, context)
-
+    context.environment = "Dev"
 
 def before_scenario(context, scenario):
     context.playwright_context = context.browser.new_context(viewport={'width': 1920, 'height': 1080})

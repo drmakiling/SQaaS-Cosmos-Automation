@@ -14,20 +14,25 @@ def navigate_to_cosmos(context, env):
     context.page_object.navigate_to_environment(env)
 
 
-
 @given('the user is logged in as "{User}"')
 def verify_logged_in(context, User):
-    # Ensure the environment variables are loaded
-    env_file_path = f'./environments/{context.env}/.env'  # Ensure you set `context.env` in a prior step
-    load_dotenv(dotenv_path=env_file_path)
+    try:
+        # Initialize the page object and perform login
+        context.page_object = Cosmos_Login_Page(context.page)
 
-    # Initialize the page object and perform login
-    context.page_object = Cosmos_Login_Page(context.page)
-    context.page_object.login_to_page(User)
+        # Ensure context.environment is being used
+        print(f"Logging in to environment: {context.environment}")
 
-    # Add assertions to verify successful login
-    # Example assertion (modify the locator as needed):
-    #assert context.page.locator("//element_or_text_to_check_after_login").is_visible()
+        # Call login with the current environment
+        context.page_object.login_to_page(User, context.environment)
+
+        # Add assertions to verify successful login
+        # Example assertion (modify the locator as needed):
+        #assert context.page.locator("//element_or_text_to_check_after_login").is_visible()
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise
+        time.sleep(99999)  # Pause to keep the browser open
 
 
 @then('create or select a case a study')
