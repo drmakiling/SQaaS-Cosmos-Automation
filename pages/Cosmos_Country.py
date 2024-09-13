@@ -107,8 +107,23 @@ class Cosmos_Country:
         expect(self.page.locator(self.no_button)).to_contain_text("No")
     
     def delete_country(self):
+        time.sleep(2)
+
+        # Get record count before deletion
+        record_count_1 = int(self.page.locator(self.records_in_the_list).text_content()[0])
+
         # Click on the 'Yes' button
         self.page.locator(self.yes_button).click()
+
+        # Delete country
+        expect(self.page.locator(self.information_deleted_successfully)).to_contain_text("Information deleted successfully")
+
+        time.sleep(2)
+
+        # Get record count after deletion
+        record_count_2 = int(self.page.locator(self.records_in_the_list).text_content()[0])
+
+        assert record_count_2 == record_count_1 - 1
 
     def verify_dob_format_modal(self):
         self.page.locator(self.date_of_birth_format_button).click()
@@ -116,6 +131,22 @@ class Cosmos_Country:
 
         expect(self.page.locator(self.date_of_birth_format_modal)).to_be_visible()
         expect(self.page.locator(self.date_of_birth_rtsm_description_text)).to_be_visible()
+
+    def open_add_country_modal(self):
+        # Click on the 'Add country' button
+        self.page.locator(self.countries_tab).click()
+        self.page.locator(self.add_country_button).click()
+
+    def verify_cancel_popup_not_displayed(self):
+        # Verify Country Cancel popup is not displayed
+        expect(self.page.locator(self.country_cancel_popup)).not_to_be_visible()
+
+        # Verify Add country modal is closed
+        expect(self.page.locator(self.edit_country_modal)).not_to_be_visible()
+
+    def click_cancel_button(self):
+        # Click on the 'Cancel' button
+        self.page.locator(self.cancel_button).click()
 
     def cancel_country_action(self):
         # Cause cancel popup to display

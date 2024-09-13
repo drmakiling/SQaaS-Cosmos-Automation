@@ -51,6 +51,25 @@ Feature: Behave with Cosmos
         When click Cancel button
         Then verify Countries cancel popup is not displayed
 
+    #3421
+    @test @country
+    Scenario: Given Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
+        Given the user is logged in as "STUDYBA1"
+        Then create or select a case a study
+        And add a country with default settings
+        And add a country with default settings
+        When open delete country modal
+        Then verify country is deleted
+
+    #3516
+    @test @country
+    Scenario: Given Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
+        Given the user is logged in as "STUDYBA1"
+        Then create or select a case a study
+        And open add country modal
+        When click Cancel button
+        Then verify cancel popup not displayed
+
     @country
         #3488
     Scenario:Signed_In_{StudyBA}_User and  User_views_a_draft_study and On_Countries_section and On_{Add}_Country_modal_with_edits When Click_Country_Cancel_button Then Verify_Country_Cancel_popup_displayed
