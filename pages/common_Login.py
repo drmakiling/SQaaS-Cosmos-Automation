@@ -32,12 +32,26 @@ class Cosmos_Login_Page:
         release_url = os.getenv('RELEASE_URL')
 
         # Navigate to the release URL
-        self.page.goto(release_url)
+        #self.page.goto(release_url)
 
-    def login_to_page(self, user_account):
-        # Load environment variables
+    def login_to_page(self, user_account, environment):
+        # Load environment variables based on the current environment
+        env_file_path = f'./environments/{environment}/.env'
+        load_dotenv(dotenv_path=env_file_path)
+        if not os.path.exists(env_file_path):
+            print(f"Env file not found: {env_file_path}")
+        else:
+            load_dotenv(dotenv_path=env_file_path)
+            print("Environment variables loaded.")
+        # Retrieve the release URL from the environment variables
+        release_url = os.getenv('RELEASE_URL')
+
+        # Navigate to the release URL
+        self.page.goto(release_url)
+        # Retrieve account and password from the loaded environment variables
         account = os.getenv(user_account + "_ACCOUNT")
         password = os.getenv(user_account + "_PASSWORD")
+
         self.page.wait_for_load_state("networkidle")
 
         # Wait for and click the 'Sign in with AstraZeneca SSO' button
@@ -54,9 +68,6 @@ class Cosmos_Login_Page:
 
         # Wait for and click the submit button again
         wait_and_click_element(self.page, self.submit_button)
-
-        # Wait for and click the submit button again
-        #wait_and_click_element(self.submit_button).click()
 
     def verify_login_is_successful(self):
         expect(self.page.locator(self.login_header)).to_be_visible()

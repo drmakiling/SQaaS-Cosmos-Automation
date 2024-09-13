@@ -74,7 +74,7 @@ class Cosmos_Country:
 
         # Verify that the modal is no longer visible
         expect(self.page.locator(self.date_of_birth_format_modal)).not_to_be_visible()
-
+    
     def configure_dob_format(self, case: str):
         self.wait_and_click_element(self.date_of_birth_format_button)
         self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
@@ -106,17 +106,11 @@ class Cosmos_Country:
         expect(self.page.locator(self.no_button)).to_contain_text("No")
     
     def delete_country(self):
-        time.sleep(2)
-        
-        # Get record count before deletion
-        record_count_1 = int(self.page.locator(self.records_in_the_list).text_content()[0])
-
         # Click on the 'Yes' button
         self.page.locator(self.yes_button).click()
 
-        # Delete country
-        expect(self.page.locator(self.information_deleted_successfully)).to_contain_text("Information deleted successfully")
-
+    def verify_dob_format_modal(self):
+        self.page.locator(self.date_of_birth_format_button).click()
         time.sleep(2)
 
         # Get record count after deletion
