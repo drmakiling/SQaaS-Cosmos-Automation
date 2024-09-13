@@ -58,3 +58,29 @@ def delete_country(context):
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
+
+@when('open add country modal')
+def open_add_country_modal(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the open_add_country_modal method
+        cosmos_country.open_add_country_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('verify cancel popup not displayed')
+def verifiy_cancel_popup_not_displayed(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the verify_cancel_popup_not_displayed method
+        cosmos_country.verify_cancel_popup_not_displayed()
+    
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open

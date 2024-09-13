@@ -124,5 +124,20 @@ class Cosmos_Country:
 
         assert record_count_2 == record_count_1 - 1
 
+    def open_add_country_modal(self):
+        # Click on the 'Add country' button
+        self.page.locator(self.countries_tab).click()
+        self.page.locator(self.add_country_button).click()
+    
+    def verify_cancel_popup_not_displayed(self):
+        # Click on the 'Cancel' button
+        self.page.locator(self.cancel_button).click()
+
+        # Verify Country Cancel popup is not displayed
+        expect(self.page.locator(self.country_cancel_popup)).not_to_be_visible()
+
+        # Verify Add country modal is closed
+        expect(self.page.locator(self.edit_country_modal)).not_to_be_visible()
+
 
 
