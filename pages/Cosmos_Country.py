@@ -1,6 +1,7 @@
 import time
 
 from playwright.sync_api import Page, expect
+from utils.wait_helpers import wait_and_click_element
 
 class Cosmos_Country:
     def __init__(self, page: Page):
@@ -76,8 +77,8 @@ class Cosmos_Country:
         expect(self.page.locator(self.date_of_birth_format_modal)).not_to_be_visible()
     
     def configure_dob_format(self, case: str):
-        self.wait_and_click_element(self.date_of_birth_format_button)
-        self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
+        wait_and_click_element(self.page, self.date_of_birth_format_button)
+        wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
 
         if self.page.locator(self.save_button).is_disabled():
             if case == "3412":
@@ -93,7 +94,7 @@ class Cosmos_Country:
                 self.wait_and_click_element(self.date_of_birth_format_button)
                 self.wait_and_click_element(self.date_of_birth_custom_format_button)
 
-        self.wait_and_click_element(self.save_button)
+        self.wait_and_click_element(self.page, self.save_button)
 
     def open_delete_country_modal(self):
         # Click on the 'Delete' button
@@ -115,3 +116,19 @@ class Cosmos_Country:
 
         expect(self.page.locator(self.date_of_birth_format_modal)).to_be_visible()
         expect(self.page.locator(self.date_of_birth_rtsm_description_text)).to_be_visible()
+
+    def cancel_country_action(self):
+        # Cause cancel popup to display
+
+        self.wait_and_click_element(self.countries_tab)
+        self.wait_and_click_element(self.add_country_button)
+        self.wait_and_click_element(self.country_code_field)
+        self.page.keyboard.press("ArrowDown")
+        self.page.keyboard.press("Enter")
+        self.wait_and_click_element(self.cancel_button)
+
+        # Verify text 1. Would you like to cancel 2. Any updates will not be saved 3. Yes 4. No
+        expect(self.page.locator(self.cancel_popup_text_1)).to_contain_text("Would you like to cancel?")
+        expect(self.page.locator(self.cancel_popup_text_2)).to_contain_text("Any updates will not be saved")
+        expect(self.page.locator(self.yes_button)).to_contain_text("Yes")
+        expect(self.page.locator(self.no_button)).to_contain_text("No")

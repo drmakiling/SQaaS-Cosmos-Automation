@@ -44,8 +44,10 @@ def cancel_date_of_birth_format_modal(context):
 
 @When('verify the updated country dob format for {case}')
 def verify_updated_country_dob_format(context, case):
-    context.cosmos_country.configure_dob_format(case)
+    # Initialize the page object and perform login
+    cosmos_country = Cosmos_Country(context.page)
 
+    cosmos_country.configure_dob_format(case)
 @when('open delete country modal')
 def open_delete_country_modal(context):
     try:
@@ -108,3 +110,13 @@ def verify_countries_cancel_popup_not_displayed(context):
     dobFormat2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']").inner_text()
     if context.countryCode == countryCode2 and context.patientLanguage == patientLanguage2 and context.dobFormat == dobFormat2:
         assert True
+
+@When('On Cancel pop up is displayed for Country')
+def Cancel_Country_pop_up_displayed(context):
+    try:
+        cosmos_country = Cosmos_Country(context.page);
+        cosmos_country.cancel_country_action()
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
