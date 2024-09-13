@@ -106,11 +106,17 @@ class Cosmos_Country:
         expect(self.page.locator(self.no_button)).to_contain_text("No")
     
     def delete_country(self):
+        time.sleep(2)
+        
+        # Get record count before deletion
+        record_count_1 = int(self.page.locator(self.records_in_the_list).text_content()[0])
+
         # Click on the 'Yes' button
         self.page.locator(self.yes_button).click()
 
-    def verify_dob_format_modal(self):
-        self.page.locator(self.date_of_birth_format_button).click()
+        # Delete country
+        expect(self.page.locator(self.information_deleted_successfully)).to_contain_text("Information deleted successfully")
+
         time.sleep(2)
 
         # Get record count after deletion
