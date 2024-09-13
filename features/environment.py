@@ -11,7 +11,7 @@ def playwright(context):
 
 def before_all(context):
     use_fixture(playwright, context)
-    context.environment = "Staging"
+    context.environment = "Dev"
 
 def before_scenario(context, scenario):
     context.playwright_context = context.browser.new_context(viewport={'width': 1920, 'height': 1080})
@@ -21,7 +21,7 @@ def before_scenario(context, scenario):
 def after_scenario(context, scenario):
     if scenario.status == "failed":
         print("Test failed, keeping the browser open for debugging.")
-        time.sleep(100)
+        #time.sleep(100)
     else:
         context.page.close()  # Or whatever cleanup you have for closing the browser
 

@@ -29,18 +29,6 @@ def verify_dob_format_modal(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@when('verify the date of birth format modal')
-def verify_dob_format_modal(context):
-    try:
-        cosmos_country = Cosmos_Country(context.page)
-        cosmos_country.add_country_simple()
-        cosmos_country.verify_dob_format_modal()
-
-    except Exception as e:
-        print(f"Test failed: {e}")
-        raise  # Raise the exception to ensure failure is reported
-        time.sleep(99999)  # Pause to keep the browser open
-
 @when('cancel the date of birth format modal')
 def cancel_date_of_birth_format_modal(context):
     try:
