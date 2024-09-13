@@ -29,6 +29,18 @@ def verify_dob_format_modal(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
+@when('verify the date of birth format modal')
+def verify_dob_format_modal(context):
+    try:
+        cosmos_country = Cosmos_Country(context.page)
+        cosmos_country.add_country_simple()
+        cosmos_country.verify_dob_format_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
 @when('cancel the date of birth format modal')
 def cancel_date_of_birth_format_modal(context):
     try:
@@ -88,10 +100,16 @@ def edit_existing_countries_record(context):
 
 @when('click Cancel button')
 def click_cancel_button(context):
-    # Instantiate Cosmos_Country with the page object from the context
-    cosmos_country = Cosmos_Country(context.page)
-
-    cosmos_country.cancel_button.click()
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the click_cancel_button method
+        cosmos_country.click_cancel_button()
+    
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
 
 Then('verify Countries cancel popup is not displayed')
 def verify_countries_cancel_popup_not_displayed(context):
@@ -108,3 +126,29 @@ def verify_countries_cancel_popup_not_displayed(context):
     dobFormat2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']").inner_text()
     if context.countryCode == countryCode2 and context.patientLanguage == patientLanguage2 and context.dobFormat == dobFormat2:
         assert True
+
+@then('open add country modal')
+def open_add_country_modal(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the open_add_country_modal method
+        cosmos_country.open_add_country_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('verify cancel popup not displayed')
+def verifiy_cancel_popup_not_displayed(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the verify_cancel_popup_not_displayed method
+        cosmos_country.verify_cancel_popup_not_displayed()
+    
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
