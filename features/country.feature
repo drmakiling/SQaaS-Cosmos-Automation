@@ -27,15 +27,30 @@ Feature: Behave with Cosmos
     #3410
     @test @country
     Scenario: User_views_a_draft_study and On_Countries_section When Clicks_on_Country_DOB_format_button Then Verify_system_displays_Country_DOB_format_modal
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        Then add a country with default settings
+        When verify the date of birth format modal
 
     #3419
     @test @country
-    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and User_views_a_draft_study and On_Countries_section When Click_Country_Delete_button Then Verify_system_displays_country_delete_confirmation_popup
+    Scenario: User_views_a_draft_study and On_Countries_section When Click_Country_Delete_button Then Verify_system_displays_country_delete_confirmation_popup
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         Then add a country with default settings
         When open delete country modal
-    
+
+
+    #3517
+    @test @country
+    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and User_views_a_draft_study and On_Countries_section and [Not] On_{Edit}_Country_modal_with_edits When Click_Country_Cancel_button Then [Not] Verify_Country_Cancel_popup_displayed
+        Given the user is loggeed in as "STUYBA1"
+        Then create or select a case a study
+        Then add a country with default settings
+        And edit an existing countries record
+        When click Cancel button
+        Then verify Countries cancel popup is not displayed
+
     #3421
     @test @country
     Scenario: Given Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
@@ -51,5 +66,6 @@ Feature: Behave with Cosmos
     Scenario: Given Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
         Given the user is logged in as "STUDYBA1"
         Then create or select a case a study
-        When open add country modal
+        And open add country modal
+        When click Cancel button
         Then verify cancel popup not displayed
