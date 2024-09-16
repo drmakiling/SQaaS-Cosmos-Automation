@@ -180,12 +180,12 @@ class Cosmos_Country:
     def cancel_country_action(self):
         # Cause cancel popup to display
 
-        self.wait_and_click_element(self.countries_tab)
-        self.wait_and_click_element(self.add_country_button)
-        self.wait_and_click_element(self.country_code_field)
+        wait_and_click_element(self.page, self.countries_tab)
+        wait_and_click_element(self.page, self.add_country_button)
+        wait_and_click_element(self.page, self.country_code_field)
         self.page.keyboard.press("ArrowDown")
         self.page.keyboard.press("Enter")
-        self.wait_and_click_element(self.cancel_button)
+        wait_and_click_element(self.page, self.cancel_button)
 
         # Verify text 1. Would you like to cancel 2. Any updates will not be saved 3. Yes 4. No
         expect(self.page.locator(self.cancel_popup_text_1)).to_contain_text("Would you like to cancel?")
