@@ -8,6 +8,3 @@ behave -t @country -f html -o reports/behave_report_$(date +%Y%m%d_%H%M%S).html
 
 If you want to open the report run the following:
 xdg-open reports/behave_report_{timestamp#}.html
-
-
-
