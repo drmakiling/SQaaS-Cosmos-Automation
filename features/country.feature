@@ -9,7 +9,7 @@ Feature: Behave with Cosmos
         When cancel the date of birth format modal
 
     #3413
-    @country @test
+    @country
     Scenario:Verify_system_displays_Country_DOB_format_modal and Change_DOB_format_to_{RTSM} When Clicks_Country_DOB_format_modal_save_button Then Verify_updated_Country_DOB_format_saved
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
