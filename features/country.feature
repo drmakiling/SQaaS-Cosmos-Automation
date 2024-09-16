@@ -55,8 +55,8 @@ Feature: Behave with Cosmos
     @country
     Scenario: Given Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
         Given the user is logged in as "STUDYBA1"
-        Then create or select a case a study
-        And add a country with default settings
+        And create or select a case a study
+        Then add a country with default settings
         And add a country with default settings
         When open delete country modal
         Then verify country is deleted
