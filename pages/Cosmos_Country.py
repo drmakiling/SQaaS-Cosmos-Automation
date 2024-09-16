@@ -79,22 +79,25 @@ class Cosmos_Country:
     def configure_dob_format(self, case: str):
         wait_and_click_element(self.page, self.date_of_birth_format_button)
         wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
-
+        time.sleep(10)
+        print(f"printing test case #: {case}")
         if self.page.locator(self.save_button).is_disabled():
-            if case == "3412":
+            if case == '"3413"':
+                print("case 3413 accepted")
                 # First set of actions
-                self.wait_and_click_element(self.date_of_birth_custom_format_button)
-                self.wait_and_click_element(self.save_button)
-                self.wait_and_click_element(self.date_of_birth_format_button)
-                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
-            elif case == "3413":
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.save_button)
+                wait_and_click_element(self.page, self.date_of_birth_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+            elif case == '"3412"':
+                print("case 3412 accepted")
                 # Second set of actions
-                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
-                self.wait_and_click_element(self.save_button)
-                self.wait_and_click_element(self.date_of_birth_format_button)
-                self.wait_and_click_element(self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+                wait_and_click_element(self.page, self.save_button)
+                wait_and_click_element(self.page, self.date_of_birth_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
 
-        self.wait_and_click_element(self.page, self.save_button)
+        wait_and_click_element(self.page, self.save_button)
 
     def open_delete_country_modal(self):
         # Click on the 'Delete' button
