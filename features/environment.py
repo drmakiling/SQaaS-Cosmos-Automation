@@ -1,6 +1,6 @@
 from behave import fixture, use_fixture
 from playwright.sync_api import sync_playwright, Page, expect
-import json, base64
+import time, json, base64
 from datetime import datetime
 
 @fixture
@@ -19,5 +19,10 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
-    context.page.close()
+    if scenario.status == "failed":
+        print("Test failed, keeping the browser open for debugging.")
+        time.sleep(10000)
+    else:
+        context.page.close()  # Or whatever cleanup you have for closing the browser
+
 

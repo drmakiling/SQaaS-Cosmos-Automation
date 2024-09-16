@@ -35,7 +35,7 @@ def verify_logged_in(context, User):
         time.sleep(99999)  # Pause to keep the browser open
 
 
-@then('create or select a case a study')
+@Given('create or select a case a study')
 def create_case_study(context):
     try:
         # Instantiate Cosmos_Main with the page object from the context

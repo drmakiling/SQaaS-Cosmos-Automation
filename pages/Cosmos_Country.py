@@ -77,24 +77,27 @@ class Cosmos_Country:
         expect(self.page.locator(self.date_of_birth_format_modal)).not_to_be_visible()
     
     def configure_dob_format(self, case: str):
-        self.wait_and_click_element(self.date_of_birth_format_button)
-        self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
-
+        wait_and_click_element(self.page, self.date_of_birth_format_button)
+        wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+        time.sleep(10)
+        print(f"printing test case #: {case}")
         if self.page.locator(self.save_button).is_disabled():
-            if case == "3412":
+            if case == '"3413"':
+                print("case 3413 accepted")
                 # First set of actions
-                self.wait_and_click_element(self.date_of_birth_custom_format_button)
-                self.wait_and_click_element(self.save_button)
-                self.wait_and_click_element(self.date_of_birth_format_button)
-                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
-            elif case == "3413":
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.save_button)
+                wait_and_click_element(self.page, self.date_of_birth_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+            elif case == '"3412"':
+                print("case 3412 accepted")
                 # Second set of actions
-                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
-                self.wait_and_click_element(self.save_button)
-                self.wait_and_click_element(self.date_of_birth_format_button)
-                self.wait_and_click_element(self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+                wait_and_click_element(self.page, self.save_button)
+                wait_and_click_element(self.page, self.date_of_birth_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
 
-        self.wait_and_click_element(self.save_button)
+        wait_and_click_element(self.page, self.save_button)
 
     def open_delete_country_modal(self):
         # Click on the 'Delete' button
@@ -134,17 +137,30 @@ class Cosmos_Country:
         # Click on the 'Add country' button
         self.page.locator(self.countries_tab).click()
         self.page.locator(self.add_country_button).click()
-    
+
     def verify_cancel_popup_not_displayed(self):
         # Verify Country Cancel popup is not displayed
         expect(self.page.locator(self.country_cancel_popup)).not_to_be_visible()
 
         # Verify Add country modal is closed
         expect(self.page.locator(self.edit_country_modal)).not_to_be_visible()
-    
+
     def click_cancel_button(self):
         # Click on the 'Cancel' button
         self.page.locator(self.cancel_button).click()
 
+    def cancel_country_action(self):
+        # Cause cancel popup to display
 
+        self.wait_and_click_element(self.countries_tab)
+        self.wait_and_click_element(self.add_country_button)
+        self.wait_and_click_element(self.country_code_field)
+        self.page.keyboard.press("ArrowDown")
+        self.page.keyboard.press("Enter")
+        self.wait_and_click_element(self.cancel_button)
 
+        # Verify text 1. Would you like to cancel 2. Any updates will not be saved 3. Yes 4. No
+        expect(self.page.locator(self.cancel_popup_text_1)).to_contain_text("Would you like to cancel?")
+        expect(self.page.locator(self.cancel_popup_text_2)).to_contain_text("Any updates will not be saved")
+        expect(self.page.locator(self.yes_button)).to_contain_text("Yes")
+        expect(self.page.locator(self.no_button)).to_contain_text("No")
