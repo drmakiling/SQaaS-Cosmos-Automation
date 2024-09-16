@@ -21,7 +21,7 @@ def before_scenario(context, scenario):
 def after_scenario(context, scenario):
     if scenario.status == "failed":
         print("Test failed, keeping the browser open for debugging.")
-        #time.sleep(100)
+        time.sleep(10000)
     else:
         context.page.close()  # Or whatever cleanup you have for closing the browser
 
