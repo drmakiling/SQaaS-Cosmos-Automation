@@ -49,3 +49,7 @@ class Cosmos_Main:
         #
         #     # Assign the team
         #     wait_and_click_element(self.page, self.assign_team)
+
+    def choose_first_study(self):
+        # Click on the first study
+        wait_and_click_element(self. page, self.first_study)

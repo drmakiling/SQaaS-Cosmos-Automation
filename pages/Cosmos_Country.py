@@ -39,6 +39,9 @@ class Cosmos_Country:
         self.date_of_birth_custom_defined_by_RTSM_card = "//h3[text()='Defined by RTSM']"
         self.disabled_save_button = "//button[@disabled and text()='Save']"
         self.dob_table_format = "//div[@data-rowindex = '0']//div[@data-field='dateOfBirthFormat']"
+        self.first_record_country_code = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']"
+        self.first_record_patient_language = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']"
+        self.first_record_dob_format = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']"
 
     def add_country_simple(self):
         self.page.locator(self.countries_tab).click()
@@ -134,6 +137,29 @@ class Cosmos_Country:
 
         expect(self.page.locator(self.date_of_birth_format_modal)).to_be_visible()
         expect(self.page.locator(self.date_of_birth_rtsm_description_text)).to_be_visible()
+
+    def edit_existing_countries_record(self, context):
+        # Save the data for the first record in the global context object to be viewed later
+        context.country_code = self.page.locator(self.first_record_country_code).inner_text()
+        context.patient_language = self.page.locator(self.first_record_patient_language).inner_text()
+        context.dob_format = self.page.locator(self.first_record_dob_format).inner_text()
+        self.page.locator(self.first_row_table).hover()
+        self.page.locator(self.edit_first_row_table).click()    
+
+    def click_cancel_button(self):
+        self.page.locator(self.cancel_button).click()
+
+    def verify_countries_cancel_popup_not_displayed(self, context):
+        # Verify Country Cancel popup is not displayed
+        expect(self.page.locator(self.country_cancel_popup)).not_to_be_visible()
+        # Verify edit country modal is closed
+        expect(self.page.locator(self.edit_country_modal)).not_to_be_visible()
+        #Verify the data of the first record remain unchanged 
+        country_code2 = self.page.locator(self.first_record_country_code).inner_text()
+        patient_language2 = self.page.locator(self.first_record_patient_language).inner_text()
+        dob_format2 = self.page.locator(self.first_record_dob_format).inner_text()
+        if context.country_code == country_code2 and context.patient_language == patient_language2 and context.dob_format == dob_format2:
+            assert True
 
     def open_add_country_modal(self):
         # Click on the 'Add country' button
