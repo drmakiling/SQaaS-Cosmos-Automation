@@ -1,7 +1,7 @@
 import time
 
 from playwright.sync_api import Page, expect
-from utils.wait_helpers import wait_and_click_element
+from utils.wait_helpers import wait_and_click_element, wait_for_element
 
 class Cosmos_Country:
     def __init__(self, page: Page):
@@ -83,18 +83,18 @@ class Cosmos_Country:
         if self.page.locator(self.save_button).is_disabled():
             if case == "3412":
                 # First set of actions
-                self.wait_and_click_element(self.date_of_birth_custom_format_button)
-                self.wait_and_click_element(self.save_button)
-                self.wait_and_click_element(self.date_of_birth_format_button)
-                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.save_button)
+                wait_and_click_element(self.page, self.date_of_birth_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
             elif case == "3413":
                 # Second set of actions
-                self.wait_and_click_element(self.date_of_birth_rtsm_format_button)
-                self.wait_and_click_element(self.save_button)
-                self.wait_and_click_element(self.date_of_birth_format_button)
-                self.wait_and_click_element(self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+                wait_and_click_element(self.page, self.save_button)
+                wait_and_click_element(self.page, self.date_of_birth_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
 
-        self.wait_and_click_element(self.page, self.save_button)
+        wait_and_click_element(self.page, self.save_button)
 
     def open_delete_country_modal(self):
         # Click on the 'Delete' button
@@ -150,16 +150,51 @@ class Cosmos_Country:
 
     def cancel_country_action(self):
         # Cause cancel popup to display
-
-        self.wait_and_click_element(self.countries_tab)
-        self.wait_and_click_element(self.add_country_button)
-        self.wait_and_click_element(self.country_code_field)
+        wait_and_click_element(self.page, self.countries_tab)
+        wait_and_click_element(self.page, self.add_country_button)
+        wait_and_click_element(self.page, self.country_code_field)
         self.page.keyboard.press("ArrowDown")
         self.page.keyboard.press("Enter")
-        self.wait_and_click_element(self.cancel_button)
+        wait_and_click_element(self.page, self.cancel_button)
 
         # Verify text 1. Would you like to cancel 2. Any updates will not be saved 3. Yes 4. No
         expect(self.page.locator(self.cancel_popup_text_1)).to_contain_text("Would you like to cancel?")
         expect(self.page.locator(self.cancel_popup_text_2)).to_contain_text("Any updates will not be saved")
         expect(self.page.locator(self.yes_button)).to_contain_text("Yes")
         expect(self.page.locator(self.no_button)).to_contain_text("No")
+
+    def add_country(self):
+        self.page.locator(self.countries_tab).click()
+        self.page.locator(self.add_country_button).click()
+        self.page.locator(self.country_code_field).click()
+        time.sleep(2)
+        self.page.keyboard.press("ArrowDown")
+        self.page.keyboard.press("Enter")
+
+    def edit_country_modal_opened(self):
+        self.page.locator(self.first_row_table).hover()
+        self.page.locator(self.edit_first_row_table).click()
+        self.page.locator(self.languages_field).click()
+        self.page.keyboard.press("ArrowDown")
+        self.page.keyboard.press("Enter")
+        self.page.keyboard.press("Escape")
+
+    def cancel_country_popup_displayed(self):
+        # Verify text 1. Would you like to cancel 2. Any updates will not be saved 3. Yes 4. No
+        wait_for_element(self.page, self.cancel_popup_text_1)
+        expect(self.page.locator(self.cancel_popup_text_1)).to_contain_text("Would you like to cancel?")
+        wait_for_element(self.page, self.cancel_popup_text_2)
+        expect(self.page.locator(self.cancel_popup_text_2)).to_contain_text("Any updates will not be saved")
+        wait_for_element(self.page, self.yes_button)
+        expect(self.page.locator(self.yes_button)).to_contain_text("Yes")
+        wait_for_element(self.page, self.no_button)
+        expect(self.page.locator(self.no_button)).to_contain_text("No")
+
+    def click_yes_cancel_button(self):
+        # click yes in cancel popup
+        wait_for_element(self.page, self.yes_button)
+        self.page.locator(self.yes_button).click()
+
+    def countries_feature_page_displayed(self):
+        # Verify modal is closed
+        expect(self.page.locator(self.edit_country_modal)).not_to_be_visible()
