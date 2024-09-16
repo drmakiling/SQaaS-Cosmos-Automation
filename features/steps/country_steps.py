@@ -4,13 +4,13 @@ from pages.Cosmos_Country import Cosmos_Country
 from playwright.sync_api import expect
 
 
-@then('add a country with default settings')
-def add_country_with_default_settings(context):
+@then('add a country with {case} settings')
+def add_country_with_default_settings(context, case):
     try:
         # Instantiate Cosmos_Country with the page object from the context
         cosmos_country = Cosmos_Country(context.page)
         # Call the add_country_simple method to perform the actions
-        cosmos_country.add_country_simple()
+        cosmos_country.add_country_simple(case)
 
     except Exception as e:
         print(f"Test failed: {e}")
