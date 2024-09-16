@@ -40,11 +40,19 @@ Feature: Behave with Cosmos
         Then add a country with default settings
         When open delete country modal
 
+    #3508
+    @country
+    Scenario: Verify_Country_Cancel_popup_displayed When Click_Country_Cancel_popup_Yes_button Then Verify_Countries_Feature_page_displayed
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        When On Cancel pop up is displayed for Country
+        And yes is clicked
+        Then countries feature page is displayed
 
     #3517
     @country
     Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and User_views_a_draft_study and On_Countries_section and [Not] On_{Edit}_Country_modal_with_edits When Click_Country_Cancel_button Then [Not] Verify_Country_Cancel_popup_displayed
-        Given the user is logged in as "STUDYBA1"
+        Given the user is logged in as "STUYBA1"
         And create or select a case a study
         Then add a country with default settings
         And edit an existing countries record
@@ -65,7 +73,7 @@ Feature: Behave with Cosmos
     @country
     Scenario: Given Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
         Given the user is logged in as "STUDYBA1"
-        Then create or select a case a study
+        And create or select a case a study
         And open add country modal
         When click Cancel button
         Then verify cancel popup not displayed
@@ -76,3 +84,13 @@ Feature: Behave with Cosmos
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         When On Cancel pop up is displayed for Country
+
+    #3489
+    @country
+    Scenario: User_views_a_draft_study and On_Countries_section and On_{Edit}_Country_modal_with_edits When Click_Country_Cancel_button Then Verify_Country_Cancel_popup_displayed
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        Then add a country with default settings
+        When edit country modal is opened
+        And click Cancel button
+        Then verify cancel popup is displayed
