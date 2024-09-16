@@ -35,7 +35,6 @@ def verify_logged_in(context, User):
         time.sleep(99999)  # Pause to keep the browser open
 
 @given('create or select a case a study')
-@then('create or select a case a study')
 def create_case_study(context):
     try:
         # Instantiate Cosmos_Main with the page object from the context
@@ -50,16 +49,3 @@ def create_case_study(context):
         raise
         time.sleep(99999)  # Pause to keep the browser open
 
-
-@given('choose the first study')
-def choose_first_study(context):
-    try:
-        # Instantiate Cosmos_Main with the page object from the context
-        cosmos_main = Cosmos_Main(context.page)
-        # Call the choose_first_study method
-        cosmos_main.choose_first_study()
-
-    except Exception as e:
-        print(f"Test failed: {e}")
-        raise
-        time.sleep(99999)  # Pause to keep the browser open
