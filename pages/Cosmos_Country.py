@@ -1,7 +1,7 @@
 import time
 
 from playwright.sync_api import Page, expect
-from utils.wait_helpers import wait_and_click_element
+from utils.wait_helpers import wait_and_click_element, wait_for_element
 
 class Cosmos_Country:
     def __init__(self, page: Page):
@@ -113,18 +113,18 @@ class Cosmos_Country:
         expect(self.page.locator(self.no_button)).to_contain_text("No")
     
     def delete_country(self):
-        time.sleep(2)
+        # Click on the 'Yes' button
+        self.page.locator(self.yes_button).click()
+
+        wait_for_element(self.page, self.edit_country_modal, 'hidden')
 
         # Get record count before deletion
         record_count_1 = int(self.page.locator(self.records_in_the_list).text_content()[0])
 
-        # Click on the 'Yes' button
-        self.page.locator(self.yes_button).click()
-
         # Delete country
         expect(self.page.locator(self.information_deleted_successfully)).to_contain_text("Information deleted successfully")
 
-        time.sleep(2)
+        wait_for_element(self.page, self.information_deleted_successfully, 'hidden')
 
         # Get record count after deletion
         record_count_2 = int(self.page.locator(self.records_in_the_list).text_content()[0])
