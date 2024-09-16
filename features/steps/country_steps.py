@@ -74,19 +74,18 @@ def delete_country(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-
-@given('edit an existing countries record')
+@then('edit an existing countries record')
 def edit_existing_countries_record(context):
-    # Save the data for the first record in the global context object to be viewed later
-    context.countryCode = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']").inner_text()
-    context.patientLanguage = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']").inner_text()
-    context.dobFormat = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']").inner_text()
-
-    # Instantiate Cosmos_Country with the page object from the context
-    cosmos_country = Cosmos_Country(context.page)
-
-    cosmos_country.edit_first_row_table.click()    
-
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the edit_existing_countries_record method
+        cosmos_country.edit_existing_countries_record(context)
+    
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
 
 @when('click Cancel button')
 def click_cancel_button(context):
@@ -95,7 +94,7 @@ def click_cancel_button(context):
         cosmos_country = Cosmos_Country(context.page)
         # Call the click_cancel_button method
         cosmos_country.click_cancel_button()
-
+    
     except Exception as e:
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
@@ -103,19 +102,16 @@ def click_cancel_button(context):
 
 @then('verify Countries cancel popup is not displayed')
 def verify_countries_cancel_popup_not_displayed(context):
-    # Instantiate Cosmos_Country with the page object from the context
-    cosmos_country = Cosmos_Country(context.page)
-
-    # Verify Country Cancel popup is not displayed
-    expect(cosmos_country.country_cancel_popup).not_to_be_visible()
-    # Verify edit country modal is closed
-    expect(cosmos_country.edit_country_modal).not_to_be_visible()
-    #Verify the data of the first record remain unchanged 
-    countryCode2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']").inner_text()
-    patientLanguage2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']").inner_text()
-    dobFormat2 = context.page.locator("//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']").inner_text()
-    if context.countryCode == countryCode2 and context.patientLanguage == patientLanguage2 and context.dobFormat == dobFormat2:
-        assert True
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        cosmos_country = Cosmos_Country(context.page)
+        # Call the verify_countries_cancel_popup_not_displayed method
+        cosmos_country.verify_countries_cancel_popup_not_displayed(context)
+    
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
 
 @then('open add country modal')
 def open_add_country_modal(context):
