@@ -49,3 +49,7 @@ def create_case_study(context):
         raise
         time.sleep(99999)  # Pause to keep the browser open
 
+@given('click {feature} feature nav menu option')
+def clickFeatureNavOption(context,feature):
+    print("This is what prints: " + feature)
+    context.page.locator("//p[contains(text(), " + feature + ")]").click()
