@@ -17,3 +17,21 @@ def wait_and_click_element(page: Page, selector: str, state='visible', timeout=3
     element = wait_for_element(page, selector, state, timeout)
     element.click()
     return element
+
+
+def wait_and_scroll_to_element(page, locator):
+    """
+    Scrolls to the specified element if it is off-screen.
+
+    Args:
+    - page: The Playwright page object.
+    - locator: The locator for the element to scroll to.
+    """
+    # Wait for the element to be present in the DOM
+    element = page.locator(locator)
+
+    # Scroll the element into view
+    element.scroll_into_view_if_needed()
+
+    # Optionally, you can also wait for the element to become visible
+    wait_for_element(page, locator)
