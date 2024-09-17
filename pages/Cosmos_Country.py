@@ -42,6 +42,7 @@ class Cosmos_Country:
         self.first_record_country_code = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']"
         self.first_record_patient_language = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']"
         self.first_record_dob_format = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']"
+        self.save_confirmed_banner = "//div[text()='Information saved successfully']"
 
     def add_country_simple(self):
         self.page.locator(self.countries_tab).click()
@@ -69,6 +70,31 @@ class Cosmos_Country:
 
         self.page.locator(self.save_button).click()
 
+    # def add_country_simple(self, case:str):
+    #     self.page.locator(self.countries_tab).click()
+    #     self.page.locator(self.add_country_button).click()
+    #     self.page.locator(self.country_code_field).click()
+    #     time.sleep(2)
+    #     self.page.keyboard.press("ArrowDown")
+    #     self.page.keyboard.press("Enter")
+
+    #     self.page.locator(self.languages_field).click()
+    #     time.sleep(2)
+    #     self.page.keyboard.press("ArrowDown")
+    #     self.page.keyboard.press("Enter")
+    #     self.page.keyboard.press("Escape")
+
+    #     # Check if RTSM radio button is disabled; if so, click Custom radio button and select from dropdown
+    #     if case == '"RTSM"':
+    #         self.page.locator(self.dob_format_rtsm).click()
+    #     elif case == '"Custom"':
+    #         self.page.locator(self.dob_format_custom).click()
+    #         self.page.locator(self.select_format_dropdown).click()
+    #         time.sleep(2)
+    #         self.page.keyboard.press("ArrowDown")
+    #         self.page.keyboard.press("Enter")
+    #     self.page.locator(self.save_button).click()
+
     def cancel_date_of_birth_format_modal(self):
         # Click on the 'Date of Birth Format' button
         self.page.locator(self.date_of_birth_format_button).click()
@@ -81,23 +107,35 @@ class Cosmos_Country:
     
     def configure_dob_format(self, case: str):
         wait_and_click_element(self.page, self.date_of_birth_format_button)
-        wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
-
-        if self.page.locator(self.save_button).is_disabled():
-            if case == "3412":
+        time.sleep(1)
+        if case == '"Custom"':
+            wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
+            time.sleep(1)
+            if self.page.locator(self.save_button).is_disabled():
                 # First set of actions
-                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
                 wait_and_click_element(self.page, self.save_button)
                 wait_and_click_element(self.page, self.date_of_birth_format_button)
-                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
-            elif case == "3413":
+                time.sleep(1)
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
+                wait_and_click_element(self.page, self.save_button)
+            else:
+                wait_and_click_element(self.page, self.save_button)
+        elif case == '"RTSM"':
+            wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+            time.sleep(1)
+            if self.page.locator(self.save_button).is_disabled():
                 # Second set of actions
-                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
                 wait_and_click_element(self.page, self.save_button)
                 wait_and_click_element(self.page, self.date_of_birth_format_button)
-                wait_and_click_element(self.page, self.date_of_birth_custom_format_button)
-
-        wait_and_click_element(self.page, self.save_button)
+                time.sleep(1)
+                wait_and_click_element(self.page, self.date_of_birth_rtsm_format_button)
+                wait_and_click_element(self.page, self.save_button)
+            else:
+                wait_and_click_element(self.page, self.save_button)
+        
+        wait_for_element(self.page, self.save_confirmed_banner).is_visible()
 
     def open_delete_country_modal(self):
         # Click on the 'Delete' button
