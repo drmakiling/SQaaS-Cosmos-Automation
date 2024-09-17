@@ -74,7 +74,7 @@ Feature: Behave with Cosmos
     Scenario: Verify_system_displays_country_delete_confirmation_popup When Click_Yes_button_on_delete_country_modal Then Verify_system_will_delete_the_country
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
-        And open add country modal
+        Then open add country modal
         When click Cancel button
         Then verify cancel popup not displayed
 
