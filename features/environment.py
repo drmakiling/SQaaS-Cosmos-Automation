@@ -27,15 +27,22 @@ if not os.path.exists(SCREENSHOT_DIR):
     os.makedirs(SCREENSHOT_DIR)
 
 
-def after_step(self, context, step):
+def after_step(context, step):
+    # Ensure the screenshots directory exists
+    if not os.path.exists('screenshots'):
+        os.makedirs('screenshots')
+        
     if step.status == 'failed':
-        # Your logic for capturing screenshot
+        # Capture screenshot on failure
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         screenshot_name = f"{timestamp}_{step.name}.png"
         screenshot_path = os.path.join('screenshots', screenshot_name)
 
+        # Take a screenshot using Playwright
         context.page.screenshot(path=screenshot_path)
-        self.log_screenshot(screenshot_path)
+
+        # Log the screenshot path (can be customized for your formatter)
+        print(f"Screenshot saved to: {screenshot_path}")
 
 
 def after_scenario(context, scenario):
