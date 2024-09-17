@@ -22,11 +22,6 @@ def before_scenario(context, scenario):
 SCREENSHOT_DIR = os.path.join(os.getcwd(), "reports", "screenshots")
 
 
-# Make sure the directory exists
-if not os.path.exists(SCREENSHOT_DIR):
-    os.makedirs(SCREENSHOT_DIR)
-
-
 def after_step(context, step):
     # Ensure the screenshots directory exists
     if not os.path.exists('screenshots'):
