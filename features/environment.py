@@ -40,7 +40,7 @@ def after_step(self, context, step):
 
 def after_scenario(context, scenario):
     if scenario.status == "failed":
-        print("Test failed, keeping the browser open for debugging.")
+        print("Test failed: {scenario}")
         time.sleep(2)
     else:
         context.page.close()  # Or whatever cleanup you have for closing the browser
