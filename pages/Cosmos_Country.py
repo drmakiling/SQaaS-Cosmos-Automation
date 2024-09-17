@@ -42,7 +42,7 @@ class Cosmos_Country:
         self.first_record_country_code = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'countryCode']"
         self.first_record_patient_language = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'patientLanguage']"
         self.first_record_dob_format = "//div[contains(@data-rowindex, '0')]/div[@data-field = 'dateOfBirthFormat']"
-        self.save_confirmed_banner = "//div[@text()='Information saved successfully']"
+        self.save_confirmed_banner = "//div[text()='Information saved successfully']"
 
     def add_country_simple(self):
         self.page.locator(self.countries_tab).click()
@@ -135,7 +135,7 @@ class Cosmos_Country:
             else:
                 wait_and_click_element(self.page, self.save_button)
         
-        expect(self.page.locator(self.save_confirmed_banner)).to_be_visible()
+        wait_for_element(self.page, self.save_confirmed_banner).is_visible()
 
     def open_delete_country_modal(self):
         # Click on the 'Delete' button
