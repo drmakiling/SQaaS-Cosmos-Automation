@@ -16,7 +16,7 @@ Feature: Patient Details
         Then verify Date of birth card is displayed
     
     #11278
-    @patientDetail @cosmos11278
+    @patientDetail
     Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and On_dashboard and Draft_Study_{MyStudies} and On_Study_Landing_Page When Click_Patient_Details_button Then Verify_Patient_Details_feature_displayed
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -24,7 +24,7 @@ Feature: Patient Details
         Then verify "Patient details" feature page is displayed
     
     #2991
-    @patientDetail @cosmos2991
+    @patientDetail
     Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and On_dashboard and Draft_Study_{MyStudies} and On_Study_Landing_Page When Click_Patient_Details_button Then Verify_Patient_Details_feature_displayed
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
