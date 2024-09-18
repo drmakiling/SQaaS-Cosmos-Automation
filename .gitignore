@@ -1,4 +1,4 @@
-environments/**/*.env
+environments/**/*
 reports/*.html
 reports/screenshots/*.png
 
