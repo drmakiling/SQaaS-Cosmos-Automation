@@ -1,6 +1,9 @@
-environments/**/*.env
+environments/**/* 
 reports/*.html
 reports/screenshots/*.png
 
 pages/__pycache__
-utils/__pycache__
+utils/__pycache__/
+
+screenshots/*
+
