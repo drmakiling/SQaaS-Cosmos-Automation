@@ -19,12 +19,12 @@ class Cosmos_PatientDetails:
         self.DOB_card_Included_in_study_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Included in study')]//parent::div/following-sibling::div/p"
         self.DOB_card_Source = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Source')]"
         self.DOB_card_Source_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div/p"
-         #needed if nothing is seleced can be used for study values and mandatory in study if needed
+         #needed if nothing is selected can be used for study values and mandatory in study if needed
         self.DOB_card_Source_value_Mandatory = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div[normalize-space()='Mandatory']"
         self.DOB_card_Study_Values = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Study values')]"
         self.DOB_card_Study_Values_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Study values')]//parent::div/following-sibling::div/p"
-        self.DOB_card_Madatory_in_study = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Mandatory in study')]"
-        self.DOB_card_Madatory_in_study_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
+        self.DOB_card_Mandatory_in_study = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Mandatory in study')]"
+        self.DOB_card_Mandatory_in_study_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
         self.DOB_card_Visible_for_CRA = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Visible for CRA')]"
         self.DOB_card_Visible_for_CRA_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Visible for CRA')]//parent::div/following-sibling::div/p"
         self.DOB_card_Visible_for_support_role = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Visible for support role')]"
@@ -66,8 +66,8 @@ class Cosmos_PatientDetails:
         self.Gender_card_Source_value_Mandatory = "//div[@data-testid='gender-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div[normalize-space()='Mandatory']"
         self.Gender_card_Study_Values = "//div[@data-testid='gender-card']//p[contains(text(), 'Study values')]"
         self.Gender_card_Study_Values_value = "//div[@data-testid='gender-card']//p[contains(text(), 'Study values')]//parent::div/following-sibling::div/p"
-        self.Gender_card_Madatory_in_study = "//div[@data-testid='gender-card']//p[contains(text(), 'Mandatory in study')]"
-        self.Gender_card_Madatory_in_study_value = "//div[@data-testid='gender-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
+        self.Gender_card_Mandatory_in_study = "//div[@data-testid='gender-card']//p[contains(text(), 'Mandatory in study')]"
+        self.Gender_card_Mandatory_in_study_value = "//div[@data-testid='gender-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
         self.Gender_card_Visible_for_CRA = "//div[@data-testid='gender-card']//p[contains(text(), 'Visible for CRA')]"
         self.Gender_card_Visible_for_CRA_value = "//div[@data-testid='gender-card']//p[contains(text(), 'Visible for CRA')]//parent::div/following-sibling::div/p"
         self.Gender_card_Visible_for_support_role = "//div[@data-testid='gender-card']//p[contains(text(), 'Visible for support role')]"
@@ -99,6 +99,46 @@ class Cosmos_PatientDetails:
         self.Gender_Modal_Visible_for_GST_No_radio_button = "//input[@name ='GenderSection-visibleForGST' and  @value='No']"
         self.Gender_Modal_decsription_1 ="//div[@id='Gender-1']//div[@class='css-rfflj']/p[contains(text(), 'Set the details')]"
         self.Gender_Modal_decsription_2 ="//div[@id='Gender-1']//div[@class='css-rfflj']/p[contains(text(), 'save form')]"
+    
+    def click_patient_details_nav_option(self):
+        # Click on the 'Patient details' nav menu option
+        self.page.locator(self.Patient_Details_feature).click()
+    
+    def verify_patient_details_page(self):
+        # Verify Date of birth card parameters, default values and Edit button
+        expect(self.page.locator(self.DOB_Card_Title)).to_be_visible()
+        expect(self.page.locator(self.DOB_Card_Title)).to_have_text("Date of birth")
+        expect(self.page.locator(self.DOB_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Included_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_have_text("Yes")
+        expect(self.page.locator(self.DOB_card_Source)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Source)).to_have_text("Source")
+        expect(self.page.locator(self.DOB_card_Source_value_Mandatory)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Source_value_Mandatory)).to_have_text("Mandatory")
+        expect(self.page.locator(self.DOB_card_Study_Values)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Study_Values)).to_have_text("Study values")
+        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_have_text("View Countries")
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study)).to_have_text("Mandatory in study")
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_have_text("Mandatory")
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA)).to_have_text("Visible for CRA")
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role)).to_have_text("Visible for support role")
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
+        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+
 
 
         
