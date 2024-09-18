@@ -33,7 +33,8 @@ class Cosmos_PatientDetails:
         self.DOB_card_Visible_for_GST_value = "//div[@data-testid='date-of-birth-card']//p[contains(text(), 'Visible for GST')]//parent::div/following-sibling::div/p"
 
         #Date of birth modal/tab
-        self.Gender_tab = "//button[@id='DateOfBirth-0']"
+        self.DOB_tab = "//button[@id='DateOfBirth-0']"
+        self.DOB_Modal_title = "//div[@id='DateOfBirth-0']/descendant::span[text()='Date of birth']"
         self.DOB_Modal_Include_in_study = "//div[@id='DateOfBirth-0']//div[@data-testid='featureFormComponent-includedInStudy']//label/h6"
         self.DOB_Modal_Include_in_study_value = "//p[@data-testid='DateOfBirthSection-includedInStudy']"
         self.DOB_Modal_Source = "//div[@id='DateOfBirth-0']//div[@data-testid='featureFormComponent-source']//label/h6"
@@ -99,12 +100,27 @@ class Cosmos_PatientDetails:
         self.Gender_Modal_Visible_for_GST_No_radio_button = "//input[@name ='GenderSection-visibleForGST' and  @value='No']"
         self.Gender_Modal_decsription_1 ="//div[@id='Gender-1']//div[@class='css-rfflj']/p[contains(text(), 'Set the details')]"
         self.Gender_Modal_decsription_2 ="//div[@id='Gender-1']//div[@class='css-rfflj']/p[contains(text(), 'save form')]"
+
+        #Weight card/tile
+        self.Weight_card_edit_button = "//div[@data-testid='weight-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
+        self.Weight_Card_Title = "//span[contains(text(), 'Weight')]"
+        self.Weight_card_Included_in_study = "//div[@data-testid='weight-card']//p[contains(text(), 'Included in study')]"
+
+        #Height card/tile
+        self.Height_card_edit_button = "//div[@data-testid='height-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
+        self.Height_Card_Title = "//span[contains(text(), 'Height')]"
+        self.Height_card_Included_in_study = "//div[@data-testid='height-card']//p[contains(text(), 'Included in study')]"
+
+        #Race card/tile
+        self.Race_card_edit_button = "//div[@data-testid='race-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
+        self.Race_Card_Title = "//span[contains(text(), 'Race')]"
+        self.Race_card_Included_in_study = "//div[@data-testid='race-card']//p[contains(text(), 'Included in study')]"
     
     def click_patient_details_nav_option(self):
         # Click on the 'Patient details' nav menu option
         self.page.locator(self.Patient_Details_feature).click()
     
-    def verify_patient_details_page(self):
+    def verify_dob_card(self):
         # Verify Date of birth card parameters, default values and Edit button
         expect(self.page.locator(self.DOB_Card_Title)).to_be_visible()
         expect(self.page.locator(self.DOB_Card_Title)).to_have_text("Date of birth")
@@ -138,7 +154,42 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
         expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
         expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+    
+    def verify_patient_details_page(self):
+        # Verify all other cards on Patient details feature page
+        expect(self.page.locator(self.Gender_Card_Title)).to_be_visible()
+        expect(self.page.locator(self.Gender_Card_Title)).to_have_text("Gender")
+        expect(self.page.locator(self.Gender_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.Gender_card_Included_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.Gender_card_edit_button)).to_be_visible()
+        expect(self.page.locator(self.Gender_card_edit_button)).to_have_text("Edit")
 
+        expect(self.page.locator(self.Weight_Card_Title)).to_be_visible()
+        expect(self.page.locator(self.Weight_Card_Title)).to_have_text("Weight")
+        expect(self.page.locator(self.Weight_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Included_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.Weight_card_edit_button)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_edit_button)).to_have_text("Edit")
 
+        expect(self.page.locator(self.Height_Card_Title)).to_be_visible()
+        expect(self.page.locator(self.Height_Card_Title)).to_have_text("Height")
+        expect(self.page.locator(self.Height_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Included_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.Height_card_edit_button)).to_be_visible()
+        expect(self.page.locator(self.Height_card_edit_button)).to_have_text("Edit")
 
-        
+        expect(self.page.locator(self.Race_Card_Title)).to_be_visible()
+        expect(self.page.locator(self.Race_Card_Title)).to_have_text("Race")
+        expect(self.page.locator(self.Race_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.Race_card_Included_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.Race_card_edit_button)).to_be_visible()
+        expect(self.page.locator(self.Race_card_edit_button)).to_have_text("Edit")
+    
+    def click_dob_edit_button(self):
+        # Click the Date of birth card 'Edit' button
+        self.page.locator(self.Race_card_edit_button).click()
+    
+    def verify_dob_modal_tab(self):
+        # Verify Date of birth modal/tab is displayed
+        expect(self.page.locator(self.DOB_tab)).to_have_css("display", "flex")
+        expect(self.page.locator(self.DOB_tab)).to_have_text("Date of birth")
