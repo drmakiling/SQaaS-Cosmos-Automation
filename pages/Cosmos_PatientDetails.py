@@ -187,9 +187,35 @@ class Cosmos_PatientDetails:
     
     def click_dob_edit_button(self):
         # Click the Date of birth card 'Edit' button
-        self.page.locator(self.Race_card_edit_button).click()
+        self.page.locator(self.DOB_card_edit_button).click()
     
     def verify_dob_modal_tab(self):
         # Verify Date of birth modal/tab is displayed
-        expect(self.page.locator(self.DOB_tab)).to_have_css("display", "flex")
+        assert self.page.locator(self.DOB_tab).get_attribute("aria-selected") == "true"
         expect(self.page.locator(self.DOB_tab)).to_have_text("Date of birth")
+        expect(self.page.locator(self.DOB_Modal_title)).to_have_text("Date of birth")
+        expect(self.page.locator(self.DOB_Modal_decsription_1)).to_have_text("Set the details of how the Date of birth for Patient Information will be configured for Unify.")
+        expect(self.page.locator(self.DOB_Modal_decsription_2)).to_contain_text("* Mandatory to save form")
+        expect(self.page.locator(self.DOB_Modal_decsription_2)).to_contain_text("♦ Mandatory for configuration approval")
+        expect(self.page.locator(self.DOB_Modal_Include_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.DOB_Modal_Include_in_study_value)).to_have_text("Yes")
+        expect(self.page.locator(self.DOB_Modal_Source)).to_have_text("Source⬥")
+        expect(self.page.locator(self.DOB_Modal_Source_Manual_radio_button)).not_to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Source_RTSM_radio_button)).not_to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Study_values)).to_have_text("Study values")
+        expect(self.page.locator(self.DOB_Modal_Study_values_Link)).to_have_text("View Countries")
+        expect(self.page.locator(self.DOB_Modal_Mandatory_in_study)).to_have_text("Mandatory in study")
+        expect(self.page.locator(self.DOB_Modal_Mandatory_in_study_value)).to_have_text("Mandatory")
+        expect(self.page.locator(self.DOB_Modal_Visible_for_CRA)).to_have_text("Visible for CRA⬥")
+        expect(self.page.locator(self.DOB_Modal_Visible_for_CRA_Yes_radio_button)).not_to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Visible_for_CRA_No_radio_button)).to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Visible_for_support_role)).to_have_text("Visible for support role⬥")
+        expect(self.page.locator(self.DOB_Modal_Visible_for_support_role_Yes_radio_button)).not_to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Visible_for_support_role_No_radio_button)).to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Visible_for_GST)).to_have_text("Visible for GST⬥")
+        expect(self.page.locator(self.DOB_Modal_Visible_for_GST_Yes_radio_button)).not_to_be_checked()
+        expect(self.page.locator(self.DOB_Modal_Visible_for_GST_No_radio_button)).to_be_checked()
+        expect(self.page.locator(self.Cancel_button)).to_be_visible()
+        expect(self.page.locator(self.Close_button)).to_be_visible()
+        expect(self.page.locator(self.Save_Button)).to_be_visible()
+        expect(self.page.locator(self.Save_Button)).to_be_disabled()
