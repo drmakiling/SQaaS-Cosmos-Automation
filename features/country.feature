@@ -1,4 +1,4 @@
-Feature: Behave with Cosmos
+Feature: Country
 
     #3414
     @country
