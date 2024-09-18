@@ -105,62 +105,6 @@ class Cosmos_PatientDetails:
         self.Weight_card_edit_button = "//div[@data-testid='weight-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
         self.Weight_Card_Title = "//span[contains(text(), 'Weight')]"
         self.Weight_card_Included_in_study = "//div[@data-testid='weight-card']//p[contains(text(), 'Included in study')]"
-
-        #Height card/tile
-        self.Height_card_edit_button = "//div[@data-testid='height-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
-        self.Height_Card_Title = "//span[contains(text(), 'Height')]"
-        self.Height_card_Included_in_study = "//div[@data-testid='height-card']//p[contains(text(), 'Included in study')]"
-
-        #Race card/tile
-        self.Race_card_edit_button = "//div[@data-testid='race-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
-        self.Race_Card_Title = "//span[contains(text(), 'Race')]"
-        self.Race_card_Included_in_study = "//div[@data-testid='race-card']//p[contains(text(), 'Included in study')]"
-    
-    def click_patient_details_nav_option(self):
-        # Click on the 'Patient details' nav menu option
-        self.page.locator(self.Patient_Details_feature).click()
-    
-    def verify_dob_card(self):
-        # Verify Date of birth card parameters, default values and Edit button
-        expect(self.page.locator(self.DOB_Card_Title)).to_be_visible()
-        expect(self.page.locator(self.DOB_Card_Title)).to_have_text("Date of birth")
-        expect(self.page.locator(self.DOB_card_Included_in_study)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Included_in_study)).to_have_text("Included in study")
-        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_have_text("Yes")
-        expect(self.page.locator(self.DOB_card_Source)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Source)).to_have_text("Source")
-        expect(self.page.locator(self.DOB_card_Source_value_Mandatory)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Source_value_Mandatory)).to_have_text("Mandatory")
-        expect(self.page.locator(self.DOB_card_Study_Values)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Study_Values)).to_have_text("Study values")
-        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_have_text("View Countries")
-        expect(self.page.locator(self.DOB_card_Mandatory_in_study)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Mandatory_in_study)).to_have_text("Mandatory in study")
-        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_have_text("Mandatory")
-        expect(self.page.locator(self.DOB_card_Visible_for_CRA)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Visible_for_CRA)).to_have_text("Visible for CRA")
-        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_have_text("No")
-        expect(self.page.locator(self.DOB_card_Visible_for_support_role)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Visible_for_support_role)).to_have_text("Visible for support role")
-        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_have_text("No")
-        expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
-        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
-        expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
-
-
-
-        #Weight card/tile
-        self.Weight_card_edit_button = "//div[@data-testid='weight-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
-        self.Weight_Card_Title = "//span[contains(text(), 'Weight')]"
-        self.Weight_card_Included_in_study = "//div[@data-testid='weight-card']//p[contains(text(), 'Included in study')]"
         self.Weight_card_Included_in_study_value = "//div[@data-testid='weight-card']//p[contains(text(), 'Included in study')]//parent::div/following-sibling::div/p"
         self.Weight_card_Source = "//div[@data-testid='weight-card']//p[contains(text(), 'Source')]"
         self.Weight_card_Source_value = "//div[@data-testid='weight-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div/p"
@@ -295,8 +239,46 @@ class Cosmos_PatientDetails:
         self.Race_Modal_Visible_for_GST_No_radio_button = "//input[@name ='RaceSection-visibleForGST' and  @value='No']"
         self.Race_Modal_decsription_1 ="//div[@id='Race-4']//div[@class='css-rfflj']/p[contains(text(), 'Set the details')]"
         self.Race_Modal_decsription_2 ="//div[@id='Race-4']//div[@class='css-rfflj']/p[contains(text(), 'save form')]"
-
     
+    def click_patient_details_nav_option(self):
+        # Click on the 'Patient details' nav menu option
+        self.page.locator(self.Patient_Details_feature).click()
+    
+    def verify_dob_card(self):
+        # Verify Date of birth card parameters, default values and Edit button
+        expect(self.page.locator(self.DOB_Card_Title)).to_be_visible()
+        expect(self.page.locator(self.DOB_Card_Title)).to_have_text("Date of birth")
+        expect(self.page.locator(self.DOB_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Included_in_study)).to_have_text("Included in study")
+        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_have_text("Yes")
+        expect(self.page.locator(self.DOB_card_Source)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Source)).to_have_text("Source")
+        expect(self.page.locator(self.DOB_card_Source_value_Mandatory)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Source_value_Mandatory)).to_have_text("Mandatory")
+        expect(self.page.locator(self.DOB_card_Study_Values)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Study_Values)).to_have_text("Study values")
+        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_have_text("View Countries")
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study)).to_have_text("Mandatory in study")
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_have_text("Mandatory")
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA)).to_have_text("Visible for CRA")
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role)).to_have_text("Visible for support role")
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
+        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+
     def verify_patient_details_page(self):
         # Verify all other cards on Patient details feature page
         expect(self.page.locator(self.Gender_Card_Title)).to_be_visible()
