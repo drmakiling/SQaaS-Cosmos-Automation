@@ -380,8 +380,8 @@ class Cosmos_PatientDetails:
         return self.page.locator("//button[text() = '" + tab.capitalize()+ "']/*[@data-testid = 'CircleIcon']").is_visible()
     
     def selectIncludeInStudyOption(self,card:str, option:str):
-        selectedCard = card.capitalize().strip('"')
-        selectedOption = option.capitalize().strip('"')
+        selectedCard = card.strip('"').capitalize()
+        selectedOption = option.strip('"').capitalize()
         self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()       
     
     def click_view_countries_link(self, context):
@@ -389,7 +389,10 @@ class Cosmos_PatientDetails:
         with self.page.context.expect_page() as new_page_info:
             self.page.locator(self.DOB_Modal_Study_values_Link).click()
         context.countries = new_page_info.value
-    
+    def clickTabFromPatientDetailsModal(self, tab : str):
+        tab = tab.strip('"').capitalize()
+        self.page.locator("//div[@aria-label = 'Study Tabs']//button[text() = '" + tab + "']").click()
+
     def verify_countries_page(self, context):
         # Verify Countries feature page is displayed in a new browser tab
         assert "COUNTRIES" in context.countries.url.upper()
