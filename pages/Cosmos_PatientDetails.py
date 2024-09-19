@@ -435,3 +435,5 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
         
+    def clickPatientDetailsModalSaveButton(self):
+        self.page.locator(self.Save_Button).click()
