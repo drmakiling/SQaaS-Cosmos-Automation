@@ -99,7 +99,7 @@ Feature: Patient Details
         Then verify Date of birth card is displayed for 3691
     
     #3692
-    @patientDetail @cosmos3692
+    @patientDetail
     Scenario: On_dashboard and Draft_Study_{AllStudies} and On_Study_Landing_Page When Click_Patient_Details_button Then Verify_Patient_Details_feature_displayed
         Given the user is logged in as "CONTENTMANAGER1"
         And select a study in All Studies
