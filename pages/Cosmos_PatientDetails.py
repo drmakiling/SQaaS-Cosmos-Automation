@@ -300,10 +300,10 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
-        if case == "2977":
+        if case == "2977" or case == "11278" or case == "2991" or case == "2992":
             expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
             expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
-        elif case == "2983":
+        else:
             expect(self.page.locator(self.DOB_card_edit_button)).to_be_hidden()
 
     def verify_patient_details_page(self):

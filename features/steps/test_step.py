@@ -50,6 +50,22 @@ def create_case_study(context):
         time.sleep(99999)  # Pause to keep the browser open
 
 @given('click {feature} feature nav menu option')
+@when('click {feature} feature nav menu option')
 def clickFeatureNavOption(context,feature):
     print("This is what prints: " + feature)
     context.page.locator("//p[contains(text(), " + feature + ")]").click()
+
+@given('select a study in All Studies')
+def select_study_all_studies(context):
+    try:
+        # Instantiate Cosmos_Main with the page object from the context
+        cosmos_main = Cosmos_Main(context.page)
+        # Call the select_study_all_studies method to perform the actions
+        cosmos_main.select_study_all_studies()
+
+        # Add assertions or additional checks as needed
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise
+        time.sleep(99999)  # Pause to keep the browser open

@@ -19,6 +19,8 @@ class Cosmos_Main:
         self.tab_click = "((//div[@id='simple-tabpanel-0'])[1]//span)[4]"
         self.assign_team = "//button[contains(text(), 'Assign team')]"
         self.existing_form = "((//h6[text()='My Studies']//ancestor::*[last()-7]//following-sibling::div)[2]//div[@data-testid='study-card'])[1]"
+        self.existing_form_all_studies = "((//h6[text()='All Studies']//ancestor::*[last()-7]//following-sibling::div)[2]//div[@data-testid='study-card'])[1]"
+
 
     def create_study(self):
         # Click on the 'Create New Study' button
@@ -49,3 +51,11 @@ class Cosmos_Main:
         #
         #     # Assign the team
         #     wait_and_click_element(self.page, self.assign_team)
+    
+    def select_study_all_studies(self):
+        time.sleep(6)
+
+        # Check if the existing form exists
+        if self.page.locator(self.existing_form_all_studies).is_visible():
+            # If the existing form is found, click on it
+            wait_and_click_element(self.page, self.existing_form_all_studies)
