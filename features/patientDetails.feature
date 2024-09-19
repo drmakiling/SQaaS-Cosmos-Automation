@@ -31,3 +31,16 @@ Feature: Patient Details
         And click "Patient details" feature nav menu option
         When click Date of birth Edit button
         Then verify Date_of_birth_modal_tab_displayed
+
+
+    #2995
+    @patientDetail @2995
+    Scenario: Given Verify_PD_Date_of_Birth_modal_tab_displayed and Edit_Date_of_birth_form_{1} When Click_Save_date_of_birth_button Then Verify_PD_Date_of_Birth_modal_tab_saved_edits
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Patient details" feature nav menu option
+        When click Date of birth Edit button
+        And Fill out Date of birth modal
+        And Save button is clicked
+        And close button is clicked
+        Then Verify Date of birth data is saved

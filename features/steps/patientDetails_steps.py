@@ -72,3 +72,50 @@ def verify_dob_modal_tab(context):
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
+
+@when('Fill out Date of birth modal')
+def fill_out_date_of_birth_modal(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        cosmos_patient_details.Fill_out_DOB_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+@when('Save button is clicked')
+def click_save_button(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        cosmos_patient_details.click_save_button()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+
+@when('close button is clicked')
+def click_close_button(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        cosmos_patient_details.click_close_button()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+
+@then('Verify Date of birth data is saved')
+def verify_date_of_birth_saved(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        cosmos_patient_details.verify_date_of_birth_modal_saved()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+        
