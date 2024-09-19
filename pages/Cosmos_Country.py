@@ -97,7 +97,7 @@ class Cosmos_Country:
 
     def cancel_date_of_birth_format_modal(self):
         # Click on the 'Date of Birth Format' button
-        self.page.locator(self.date_of_birth_format_button).click()
+        wait_and_click_element(self.page, self.date_of_birth_format_button)
 
         # Click on the 'Cancel' button
         self.page.locator(self.date_of_birth_cancel_button).click()

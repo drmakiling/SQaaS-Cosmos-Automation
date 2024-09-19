@@ -9,7 +9,7 @@ Feature: Behave with Cosmos
         When cancel the date of birth format modal
 
     #3412
-    @country
+    @country 
     Scenario: Verify_system_displays_Country_DOB_format_modal and Change_DOB_format_to_{Custom} When Clicks_Country_DOB_format_modal_save_button Then Verify_updated_Country_DOB_format_saved
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -94,3 +94,30 @@ Feature: Behave with Cosmos
         When edit country modal is opened
         And click Cancel button
         Then verify cancel popup is displayed
+    
+    
+    @regression
+    Scenario: Country_regression_run
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        Then open add country modal
+        When click Cancel button  
+        Then verify cancel popup not displayed
+	    When On Cancel pop up is displayed for Country      
+        And yes is clicked
+        Then countries feature page is displayed
+        When verify the date of birth format modal
+        When click Cancel button 
+        When cancel the date of birth format modal		
+        When verify the updated country dob format for "Custom"	
+        When verify the updated country dob format for "RTSM"		
+        Then add a country with default settings	
+        Then edit an existing countries record
+        When click Cancel button
+        Then verify Countries cancel popup is not displayed		
+        When edit country modal is opened
+        And click Cancel button
+        Then verify cancel popup is displayed
+        When yes is clicked			
+        When open delete country modal				
+        Then verify country is deleted				
