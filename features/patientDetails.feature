@@ -21,7 +21,8 @@ Feature: Patient Details
         And click the "Weight" tab from the Patient Details modal
         Then Verify the unsaved indicator appears for the "Height" tab
 
-    @patientDetail @3202
+    #3202
+    @patientDetail
     Scenario: COSMOS-3205 Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and On_dashboard and Draft_Study_{PatientDetails} When User_makes_changes Then Verify_unsaved_indicator_appears
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -53,17 +54,17 @@ Feature: Patient Details
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        And Date of birth card is displayed for 2991
-        When click the Edit button for "Date of birth" card
+        When Date of birth card is displayed for 2991
+        And click the Edit button for "Date of birth" card
         Then verify Date of birth modal tab is displayed
     
-       #2995
-    @patientDetail @2995
+    #2995
+    @patientDetail
     Scenario: Given Verify_PD_Date_of_Birth_modal_tab_displayed and Edit_Date_of_birth_form_{1} When Click_Save_date_of_birth_button Then Verify_PD_Date_of_Birth_modal_tab_saved_edits
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        When click Date of birth Edit button
+        When click the Edit button for "Date of birth" card
         And Fill out Date of birth modal
         And Save button is clicked
         And close button is clicked
@@ -75,10 +76,10 @@ Feature: Patient Details
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        And Date of birth card is displayed for 2992
+        When Date of birth card is displayed for 2992
         And click the Edit button for "Date of birth" card
         And Date of birth modal tab is displayed
-        When click View Countries link
+        And click View Countries link
         Then verify "Countries" feature page is displayed in a new browser tab
     
     #2983
