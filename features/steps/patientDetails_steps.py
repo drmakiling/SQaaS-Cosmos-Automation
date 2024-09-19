@@ -79,7 +79,7 @@ def click_Edit_button_for_card(context, card):
     try:
         # Instantiate Cosmos_Country with the page object from the context
         patientDetails = Cosmos_PatientDetails(context.page)
-        # Call the open_delete_country_modal method
+        # Click the Edit button for the specified card
         patientDetails.clickEditbuttonForCard(card)
 
     except Exception as e:
@@ -108,7 +108,7 @@ def verify_unsaved_indicator_appears(context,tab):
     try:
         # Instantiate Cosmos_Country with the page object from the context
         patientDetails = Cosmos_PatientDetails(context.page)
-        #Assert the saved indicator appears on Height tab
+        #Assert the saved indicator appears on the tab
         print(patientDetails.checkSavedIndicatorIsVisible(tab))
         assert patientDetails.checkSavedIndicatorIsVisible(tab)        
 
