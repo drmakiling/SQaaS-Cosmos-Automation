@@ -140,5 +140,17 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
 
 
+    def clickEditbuttonForCard(self, card : str):
+        selectedCard = card.lower().strip('"').replace(" ", "-")
+        self.page.locator("//div[@data-testid='"+ selectedCard + "-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']").click()
+
+    def checkSavedIndicatorIsVisible(self,tab : str) -> bool:
+        tab = tab.strip('"')
+        return self.page.locator("//button[text() = '" + tab.capitalize()+ "']/*[@data-testid = 'CircleIcon']").is_visible()
+    
+    def selectIncludeInStudyOption(self,card:str, option:str):
+        selectedCard = card.capitalize().strip('"')
+        selectedOption = option.capitalize().strip('"')
+        self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()
 
         
