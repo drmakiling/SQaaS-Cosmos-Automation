@@ -158,3 +158,30 @@ def click_tab_in_patient_details_modal(context,tab):
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
+
+@when('click the Patient Details Save button')
+def click_Patient_Details_Save_button(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        # click the Save button
+        patientDetails.clickPatientDetailsModalSaveButton()
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('Verify the save indicator is not shown for the {tab} tab')
+def verify_saved_indicator_is_not_shown(context,tab):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        #Assert the saved indicator appears on the tab
+        time.sleep(5)
+        print(patientDetails.checkSavedIndicatorIsVisible(tab))
+        assert (not(patientDetails.checkSavedIndicatorIsVisible(tab)))        
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open

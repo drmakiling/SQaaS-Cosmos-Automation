@@ -397,3 +397,6 @@ class Cosmos_PatientDetails:
         # Verify Countries feature page is displayed in a new browser tab
         assert "COUNTRIES" in context.countries.url.upper()
         expect(context.countries.get_by_test_id("landing-header")).to_have_text("Countries")
+
+    def clickPatientDetailsModalSaveButton(self):
+        self.page.locator(self.Save_Button).click()
