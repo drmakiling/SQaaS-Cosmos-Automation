@@ -300,10 +300,10 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
-        if case == "2977":
+        if case == "2977" or case == "11278" or case == "2991" or case == "2992":
             expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
             expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
-        elif case == "2983":
+        else:
             expect(self.page.locator(self.DOB_card_edit_button)).to_be_hidden()
 
     def verify_patient_details_page(self):
@@ -398,5 +398,40 @@ class Cosmos_PatientDetails:
         assert "COUNTRIES" in context.countries.url.upper()
         expect(context.countries.get_by_test_id("landing-header")).to_have_text("Countries")
 
-    def clickPatientDetailsModalSaveButton(self):
+        expect(self.page.locator(self.Save_Button)).to_be_disabled()
+
+    def Fill_out_DOB_modal(self):
+        #fills out source = manual 
+        self.page.locator(self.DOB_Modal_Source_Manual_radio_button).click()
+        #fills out visible for CRA = No
+        self.page.locator(self.DOB_Modal_Visible_for_CRA_No_radio_button).click()
+        #fills out visible for Support Role = No
+        self.page.locator(self.DOB_Modal_Visible_for_support_role_No_radio_button).click()
+        #fills out visible for GST = No
+        self.page.locator(self.DOB_Modal_Visible_for_GST_No_radio_button).click()
+
+    def click_save_button(self):
+        #clicks save button for any modal
         self.page.locator(self.Save_Button).click()
+
+    def click_close_button(self):
+        #clicks close button for any modal
+        self.page.locator(self.Close_button).click()
+
+    def verify_date_of_birth_modal_saved(self):
+        #verifies data saved from the date of birth modal are reflected on the date of birth card
+        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Included_in_study_value)).to_have_text("Yes")
+        expect(self.page.locator(self.DOB_card_Source_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Source_value)).to_have_text("Manual")
+        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Study_Values_value)).to_have_text("View Countries")
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Mandatory_in_study_value)).to_have_text("Mandatory")
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_CRA_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_support_role_value)).to_have_text("No")
+        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
+        expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
+        
