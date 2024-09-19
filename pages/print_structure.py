@@ -14,5 +14,5 @@ def print_directory_structure(root_dir):
 
 if __name__ == "__main__":
     # Set the root directory to your project root
-    project_root = '/home/kgirard-admin/Downloads/learning-Automation-RT-master'  # Set this to your actual project root directory
+    project_root = '*/PycharmProjects/AZ-BDD'  # Set this to your actual project root directory
     print_directory_structure(project_root)

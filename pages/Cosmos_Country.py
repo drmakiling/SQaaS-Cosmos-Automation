@@ -154,7 +154,8 @@ class Cosmos_Country:
         wait_for_element(self.page, self.edit_country_modal, 'hidden')
 
         # Get record count before deletion
-        record_count_1 = int(self.page.locator(self.records_in_the_list).text_content()[0])
+        records_in_list_text1 = self.page.locator(self.records_in_the_list).text_content()
+        record_count_1 = int(records_in_list_text1[0:records_in_list_text1.find(" ")])
 
         # Delete country
         expect(self.page.locator(self.information_deleted_successfully)).to_contain_text("Information deleted successfully")
@@ -162,7 +163,8 @@ class Cosmos_Country:
         wait_for_element(self.page, self.information_deleted_successfully, 'hidden')
 
         # Get record count after deletion
-        record_count_2 = int(self.page.locator(self.records_in_the_list).text_content()[0])
+        records_in_list_text2 = self.page.locator(self.records_in_the_list).text_content()
+        record_count_2 = int(records_in_list_text2[0:records_in_list_text2.find(" ")])
 
         assert record_count_2 == record_count_1 - 1
 
