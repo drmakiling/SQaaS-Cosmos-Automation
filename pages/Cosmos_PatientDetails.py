@@ -377,12 +377,12 @@ class Cosmos_PatientDetails:
         return self.page.locator("//button[text() = '" + tab.capitalize()+ "']/*[@data-testid = 'CircleIcon']").is_visible()
     
     def selectIncludeInStudyOption(self,card:str, option:str):
-        selectedCard = card.capitalize().strip('"')
-        selectedOption = option.capitalize().strip('"')
+        selectedCard = card.strip('"').capitalize()
+        selectedOption = option.strip('"').capitalize()
         self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()
 
     def clickTabFromPatientDetailsModal(self, tab : str):
-        tab = tab.capitalize().strip('"')
+        tab = tab.strip('"').capitalize()
         self.page.locator("//div[@aria-label = 'Study Tabs']//button[text() = '" + tab + "']").click()
 
         
