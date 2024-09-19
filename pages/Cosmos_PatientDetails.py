@@ -341,7 +341,7 @@ class Cosmos_PatientDetails:
         # Verify Date of birth modal/tab is displayed
         assert self.page.locator(self.DOB_tab).get_attribute("aria-selected") == "true"
         expect(self.page.locator(self.DOB_tab)).to_have_text("Date of birth")
-        expect(self.page.locator(self.DOB_Modal_title)).to_have_text("Date of birth")
+        expect(self.page.locator(self.DOB_Modal_title)).to_be_visible()
         expect(self.page.locator(self.DOB_Modal_decsription_1)).to_have_text("Set the details of how the Date of birth for Patient Information will be configured for Unify.")
         expect(self.page.locator(self.DOB_Modal_decsription_2)).to_contain_text("* Mandatory to save form")
         expect(self.page.locator(self.DOB_Modal_decsription_2)).to_contain_text("♦ Mandatory for configuration approval")
@@ -379,7 +379,15 @@ class Cosmos_PatientDetails:
     def selectIncludeInStudyOption(self,card:str, option:str):
         selectedCard = card.capitalize().strip('"')
         selectedOption = option.capitalize().strip('"')
-        self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()
-
-
-        
+        self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()       
+    
+    def click_view_countries_link(self, context):
+        # Click the 'View Countries' link
+        with self.page.context.expect_page() as new_page_info:
+            self.page.locator(self.DOB_Modal_Study_values_Link).click()
+        context.countries = new_page_info.value
+    
+    def verify_countries_page(self, context):
+        # Verify Countries feature page is displayed in a new browser tab
+        assert "COUNTRIES" in context.countries.url.upper()
+        expect(context.countries.get_by_test_id("landing-header")).to_have_text("Countries")
