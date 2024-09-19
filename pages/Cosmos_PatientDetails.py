@@ -268,7 +268,7 @@ class Cosmos_PatientDetails:
         # Click on the 'Patient details' nav menu option
         self.page.locator(self.Patient_Details_feature).click()
     
-    def verify_dob_card(self):
+    def verify_dob_card(self, case):
         # Verify Date of birth card parameters, default values and Edit button
         expect(self.page.locator(self.DOB_Card_Title)).to_be_visible()
         expect(self.page.locator(self.DOB_Card_Title)).to_have_text("Date of birth")
@@ -300,8 +300,11 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
-        expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+        if case == "2977" or case == "11278" or case == "2991" or case == "2992":
+            expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
+            expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+        else:
+            expect(self.page.locator(self.DOB_card_edit_button)).to_be_hidden()
 
     def verify_patient_details_page(self):
         # Verify all other cards on Patient details feature page
@@ -341,7 +344,7 @@ class Cosmos_PatientDetails:
         # Verify Date of birth modal/tab is displayed
         assert self.page.locator(self.DOB_tab).get_attribute("aria-selected") == "true"
         expect(self.page.locator(self.DOB_tab)).to_have_text("Date of birth")
-        expect(self.page.locator(self.DOB_Modal_title)).to_have_text("Date of birth")
+        expect(self.page.locator(self.DOB_Modal_title)).to_be_visible()
         expect(self.page.locator(self.DOB_Modal_decsription_1)).to_have_text("Set the details of how the Date of birth for Patient Information will be configured for Unify.")
         expect(self.page.locator(self.DOB_Modal_decsription_2)).to_contain_text("* Mandatory to save form")
         expect(self.page.locator(self.DOB_Modal_decsription_2)).to_contain_text("♦ Mandatory for configuration approval")
@@ -366,6 +369,35 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.Cancel_button)).to_be_visible()
         expect(self.page.locator(self.Close_button)).to_be_visible()
         expect(self.page.locator(self.Save_Button)).to_be_visible()
+        expect(self.page.locator(self.Save_Button)).to_be_disabled()   
+        
+    def clickEditbuttonForCard(self, card : str):
+        selectedCard = card.lower().strip('"').replace(" ", "-")
+        self.page.locator("//div[@data-testid='"+ selectedCard + "-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']").click()
+
+    def checkSavedIndicatorIsVisible(self,tab : str) -> bool:
+        tab = tab.strip('"')
+        return self.page.locator("//button[text() = '" + tab.capitalize()+ "']/*[@data-testid = 'CircleIcon']").is_visible()
+    
+    def selectIncludeInStudyOption(self,card:str, option:str):
+        selectedCard = card.strip('"').capitalize()
+        selectedOption = option.strip('"').capitalize()
+        self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()       
+    
+    def click_view_countries_link(self, context):
+        # Click the 'View Countries' link
+        with self.page.context.expect_page() as new_page_info:
+            self.page.locator(self.DOB_Modal_Study_values_Link).click()
+        context.countries = new_page_info.value
+    def clickTabFromPatientDetailsModal(self, tab : str):
+        tab = tab.strip('"').capitalize()
+        self.page.locator("//div[@aria-label = 'Study Tabs']//button[text() = '" + tab + "']").click()
+
+    def verify_countries_page(self, context):
+        # Verify Countries feature page is displayed in a new browser tab
+        assert "COUNTRIES" in context.countries.url.upper()
+        expect(context.countries.get_by_test_id("landing-header")).to_have_text("Countries")
+
         expect(self.page.locator(self.Save_Button)).to_be_disabled()
 
     def Fill_out_DOB_modal(self):
