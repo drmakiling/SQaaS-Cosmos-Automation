@@ -36,7 +36,7 @@ def verify_patient_details_page(context):
         # Instantiate Cosmos_PatientDetails with the page object from the context
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
         # Call the verify_dob_card method to perform the actions
-        cosmos_patient_details.verify_dob_card()
+        cosmos_patient_details.verify_dob_card("2977")
         # Call the verify_patient_details_page method to perform the actions
         cosmos_patient_details.verify_patient_details_page()
 
@@ -52,7 +52,7 @@ def click_dob_edit_button(context):
         # Instantiate Cosmos_PatientDetails with the page object from the context
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
         # Call the verify_dob_card method to perform the actions
-        cosmos_patient_details.verify_dob_card()
+        cosmos_patient_details.verify_dob_card("2977")
         # Call the click_dob_edit_button method to perform the actions
         cosmos_patient_details.click_dob_edit_button()
 
