@@ -239,6 +239,30 @@ class Cosmos_PatientDetails:
         self.Race_Modal_Visible_for_GST_No_radio_button = "//input[@name ='RaceSection-visibleForGST' and  @value='No']"
         self.Race_Modal_decsription_1 ="//div[@id='Race-4']//div[@class='css-rfflj']/p[contains(text(), 'Set the details')]"
         self.Race_Modal_decsription_2 ="//div[@id='Race-4']//div[@class='css-rfflj']/p[contains(text(), 'save form')]"
+
+        #Participant ID card/tile
+        self.Participant_ID_card_edit_button = "//div[@data-testid='participant-id-card']//button[@class='MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways MuiLink-button css-95lpad'][normalize-space()='Edit']"
+        self.Participant_ID_Card_Title = "//span[contains(text(), 'Participant ID')]"
+        self.Participant_ID_card_Format_type = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID format type')]"
+        self.Participant_ID_card_Format_typevalue = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID format type')]//parent::div/following-sibling::div/p"
+        self.Participant_ID_card_format_pattern_description = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID format pattern description')]"
+        self.Participant_ID_card_format_pattern_description_value = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID format pattern description')]//parent::div/following-sibling::div/p"
+        self.Participant_ID_card_helper_text = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID helper text')]"
+        self.Participant_ID_card_helper_text_value = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID helper text')]//parent::div/following-sibling::div/p"
+        self.Participant_ID_card_validation_error_text = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID validation error text')]"
+        self.Participant_ID_card_validation_error_text_value = "//div[@data-testid='participant-id-card']//p[contains(text(), 'Participant ID validation error text')]//parent::div/following-sibling::div/p"
+        
+        #Participant ID modal/tab
+        self.Participant_ID_tab = "//button[@id='ParticipantID-5']"
+        self.Participant_ID_Modal_Format_type = "//div[@id='ParticipantID-5']//div[@data-testid='featureFormComponent-participantIDFormatType']//label/h6"
+        self.Participant_ID_Modal_Format_type_ECODE_radio_button = "//input[@name ='featureFormComponent-participantIDFormatType' and  @value='ECODE']"
+        self.Participant_ID_Modal_Format_type_Custom_radio_button = "//input[@name ='featureFormComponent-participantIDFormatType' and  @value='CUSTOM']"
+        self.Participant_ID_Modal_format_pattern_description = "//div[@id='ParticipantID-5']//div[@data-testid='featureFormComponent-participantIDFormatPatternDescription']//label/h6"
+        self.Participant_ID_Modal_format_pattern_description_textBox  = "//div[@id='ParticipantID-5']//textarea[@name='ParticipantIDFormatSection-participantIDFormatPatternDescription']"
+        self.Participant_ID_Modal_helper_text= "//div[@id='ParticipantID-5']//div[@data-testid='featureFormComponent-participantIDHelperText']//label/h6"
+        self.Participant_ID_Modal_helper_text_textBox  = "//div[@id='ParticipantID-5']//textarea[@name='ParticipantIDMessageSection-participantIDHelperText']"
+        self.Participant_ID_Modal_validation_error_text = "//div[@id='ParticipantID-5']//div[@data-testid='featureFormComponent-participantIDValidationErrorText']//label/h6"
+        self.Participant_ID_Modal_validation_error_text_textBox  = "//div[@id='ParticipantID-5']//textarea[@name='ParticipantIDMessageSection-participantIDValidationErrorText']"
     
     def click_patient_details_nav_option(self):
         # Click on the 'Patient details' nav menu option
@@ -343,3 +367,5 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.Close_button)).to_be_visible()
         expect(self.page.locator(self.Save_Button)).to_be_visible()
         expect(self.page.locator(self.Save_Button)).to_be_disabled()
+
+        
