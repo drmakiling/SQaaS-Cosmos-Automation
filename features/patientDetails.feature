@@ -63,3 +63,11 @@ Feature: Patient Details
         And create or select a case a study
         When click "Patient details" feature nav menu option
         Then verify Date of birth card is displayed for 2983
+    
+    #3692
+    @patientDetail
+    Scenario: On_dashboard and Draft_Study_{AllStudies} and On_Study_Landing_Page When Click_Patient_Details_button Then Verify_Patient_Details_feature_displayed
+        Given the user is logged in as "CONTENTMANAGER1"
+        And select a study in All Studies
+        When click "Patient details" feature nav menu option
+        Then verify Date of birth card is displayed for 3692

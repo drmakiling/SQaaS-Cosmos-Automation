@@ -303,7 +303,7 @@ class Cosmos_PatientDetails:
         if case == "2977":
             expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
             expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
-        elif case == "2983":
+        else:
             expect(self.page.locator(self.DOB_card_edit_button)).to_be_hidden()
 
     def verify_patient_details_page(self):
