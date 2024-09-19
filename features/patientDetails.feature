@@ -16,7 +16,7 @@ Feature: Patient Details
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         When click "Patient details" feature nav menu option
-        Then verify Date of birth card is displayed
+        Then verify Date of birth card is displayed for 2977
     
     #11278
     @patientDetail
@@ -44,3 +44,11 @@ Feature: Patient Details
         And click Date of birth Edit button
         When click View Countries link
         Then verify "Countries" feature page is displayed in a new browser tab
+    
+    #2983
+    @patientDetail
+    Scenario: On_dashboard and Draft_Study_{MyStudies} and On_Study_Landing_Page When Click_Patient_Details_button Then Verify_Patient_Details_feature_displayed
+        Given the user is logged in as "TESTLEAD1"
+        And create or select a case a study
+        When click "Patient details" feature nav menu option
+        Then verify Date of birth card is displayed for 2983

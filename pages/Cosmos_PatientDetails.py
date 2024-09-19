@@ -268,7 +268,7 @@ class Cosmos_PatientDetails:
         # Click on the 'Patient details' nav menu option
         self.page.locator(self.Patient_Details_feature).click()
     
-    def verify_dob_card(self):
+    def verify_dob_card(self, case):
         # Verify Date of birth card parameters, default values and Edit button
         expect(self.page.locator(self.DOB_Card_Title)).to_be_visible()
         expect(self.page.locator(self.DOB_Card_Title)).to_have_text("Date of birth")
@@ -300,8 +300,11 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST)).to_have_text("Visible for GST")
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
-        expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
-        expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+        if case == "2977":
+            expect(self.page.locator(self.DOB_card_edit_button)).to_be_visible()
+            expect(self.page.locator(self.DOB_card_edit_button)).to_have_text("Edit")
+        elif case == "2983":
+            expect(self.page.locator(self.DOB_card_edit_button)).to_be_hidden()
 
     def verify_patient_details_page(self):
         # Verify all other cards on Patient details feature page

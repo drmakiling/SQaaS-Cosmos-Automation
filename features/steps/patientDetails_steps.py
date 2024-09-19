@@ -17,13 +17,13 @@ def click_patient_details_nav_option(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@then('verify Date of birth card is displayed')
-def verify_dob_card(context):
+@then('verify Date of birth card is displayed for {case}')
+def verify_dob_card(context, case):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
         # Call the verify_dob_card method to perform the actions
-        cosmos_patient_details.verify_dob_card()
+        cosmos_patient_details.verify_dob_card(case)
 
     except Exception as e:
         print(f"Test failed: {e}")
@@ -140,6 +140,7 @@ def verify_countries_page(context):
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
         # Call the verify_countries method to perform the actions
         cosmos_patient_details.verify_countries_page(context)
+        
     except Exception as e:
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
