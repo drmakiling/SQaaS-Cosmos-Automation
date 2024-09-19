@@ -11,7 +11,7 @@ Feature: Patient Details
         Then Verify the unsaved indicator appears for the "Height" tab
 
     #3207
-    @patientDetail @3207
+    @patientDetail
     Scenario: Given Verify_unsaved_indicator_appears When User_changes_tabs Then Verify_unsaved_indicator_remains
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -43,8 +43,9 @@ Feature: Patient Details
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        When click Date of birth Edit button
-        Then verify Date of birth modal tab displayed
+        And Date of birth card is displayed for 2991
+        When click the Edit button for "Date of birth" card
+        Then verify Date of birth modal tab is displayed
     
     #2992
     @patientDetail
@@ -52,7 +53,9 @@ Feature: Patient Details
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        And click Date of birth Edit button
+        And Date of birth card is displayed for 2992
+        And click the Edit button for "Date of birth" card
+        And Date of birth modal tab is displayed
         When click View Countries link
         Then verify "Countries" feature page is displayed in a new browser tab
     
@@ -63,6 +66,14 @@ Feature: Patient Details
         And create or select a case a study
         When click "Patient details" feature nav menu option
         Then verify Date of birth card is displayed for 2983
+    
+    #3691
+    @patientDetail
+    Scenario: On_dashboard and Draft_Study_{AllStudies} and On_Study_Landing_Page When Click_Patient_Details_button Then Verify_Patient_Details_feature_displayed
+        Given the user is logged in as "STUDYBA1"
+        And select a study in All Studies
+        When click "Patient details" feature nav menu option
+        Then verify Date of birth card is displayed for 3691
     
     #3692
     @patientDetail
