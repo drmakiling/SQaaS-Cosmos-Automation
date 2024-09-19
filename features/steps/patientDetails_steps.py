@@ -77,7 +77,7 @@ def verify_dob_modal_tab(context):
 @when('click the Edit button for {card} card')
 def click_Edit_button_for_card(context, card):
     try:
-        # Instantiate Cosmos_Country with the page object from the context
+        # Instantiate Cosmos_PatientDetails with the page object from the context
         patientDetails = Cosmos_PatientDetails(context.page)
         # Click the Edit button for the specified card
         patientDetails.clickEditbuttonForCard(card)
@@ -90,7 +90,7 @@ def click_Edit_button_for_card(context, card):
 @when('making unsaved changes on the Height modal')
 def make_UnSaved_changes_to_Height_Modal(context):
     try:
-        # Instantiate Cosmos_Country with the page object from the context
+        # Instantiate Cosmos_PatientDetails with the page object from the context
         patientDetails = Cosmos_PatientDetails(context.page)
         #Select the Yes option for the Include in Study field
         patientDetails.selectIncludeInStudyOption("Height","Yes")
@@ -106,12 +106,25 @@ def make_UnSaved_changes_to_Height_Modal(context):
 @then('Verify the unsaved indicator appears for the {tab} tab')
 def verify_unsaved_indicator_appears(context,tab):
     try:
-        # Instantiate Cosmos_Country with the page object from the context
+        # Instantiate Cosmos_PatientDetails with the page object from the context
         patientDetails = Cosmos_PatientDetails(context.page)
         #Assert the saved indicator appears on the tab
         print(patientDetails.checkSavedIndicatorIsVisible(tab))
         assert patientDetails.checkSavedIndicatorIsVisible(tab)        
 
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@when('click the {tab} tab from the Patient Details modal')
+def click_tab_in_patient_details_modal(context,tab):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        # click the tab from the Patient Details modal
+        patientDetails.clickTabFromPatientDetailsModal(tab)
+    
     except Exception as e:
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported

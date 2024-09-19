@@ -9,6 +9,17 @@ Feature: Patient Details
         When click the Edit button for "Height" card
         And making unsaved changes on the Height modal
         Then Verify the unsaved indicator appears for the "Height" tab
+
+    #3207
+    @patientDetail @3207
+    Scenario: Given Verify_unsaved_indicator_appears When User_changes_tabs Then Verify_unsaved_indicator_remains
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Patient details" feature nav menu option
+        When click the Edit button for "Height" card
+        And making unsaved changes on the Height modal
+        And click the "Weight" tab from the Patient Details modal
+        Then Verify the unsaved indicator appears for the "Height" tab
     
     #2977
     @patientDetail

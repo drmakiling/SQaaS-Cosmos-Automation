@@ -381,5 +381,8 @@ class Cosmos_PatientDetails:
         selectedOption = option.capitalize().strip('"')
         self.page.locator("//input[@name ='"+ selectedCard +"Section-includedInStudy' and  @value='"+ selectedOption + "']").click()
 
+    def clickTabFromPatientDetailsModal(self, tab : str):
+        tab = tab.capitalize().strip('"')
+        self.page.locator("//div[@aria-label = 'Study Tabs']//button[text() = '" + tab + "']").click()
 
         
