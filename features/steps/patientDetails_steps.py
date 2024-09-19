@@ -72,3 +72,47 @@ def verify_dob_modal_tab(context):
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
+
+
+@when('click the Edit button for {card} card')
+def click_Edit_button_for_card(context, card):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        # Click the Edit button for the specified card
+        patientDetails.clickEditbuttonForCard(card)
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@when('making unsaved changes on the Height modal')
+def make_UnSaved_changes_to_Height_Modal(context):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        #Select the Yes option for the Include in Study field
+        patientDetails.selectIncludeInStudyOption("Height","Yes")
+        #check if the save indicator is visible if not select the No radio button
+        if(not(patientDetails.checkSavedIndicatorIsVisible("Height"))):
+            patientDetails.selectIncludeInStudyOption("Height","No")       
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('Verify the unsaved indicator appears for the {tab} tab')
+def verify_unsaved_indicator_appears(context,tab):
+    try:
+        # Instantiate Cosmos_Country with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        #Assert the saved indicator appears on the tab
+        print(patientDetails.checkSavedIndicatorIsVisible(tab))
+        assert patientDetails.checkSavedIndicatorIsVisible(tab)        
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
