@@ -36,7 +36,7 @@ Feature: Patient Details
         Then verify Date of birth modal tab displayed
     
     #2992
-    @patientDetail @cosmos2992
+    @patientDetail
     Scenario: Given Verify_PD_Date_of_Birth_modal_tab_displayed When Click_View_Countries_link Then Verify_System_Opens_New_Browser_Tab
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
