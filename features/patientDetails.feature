@@ -23,7 +23,7 @@ Feature: Patient Details
 
     #3202
     @patientDetail
-    Scenario: COSMOS-3205 Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and On_dashboard and Draft_Study_{PatientDetails} When User_makes_changes Then Verify_unsaved_indicator_appears
+    Scenario: Given Verify_unsaved_indicator_appears When User_saves_changes Then Verify_unsaved_indicator_removed
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
@@ -59,7 +59,7 @@ Feature: Patient Details
         Then verify Date of birth modal tab is displayed
     
     #2995
-    @patientDetail @2995
+    @patientDetail
     Scenario: Given Verify_PD_Date_of_Birth_modal_tab_displayed and Edit_Date_of_birth_form_{1} When Click_Save_date_of_birth_button Then Verify_PD_Date_of_Birth_modal_tab_saved_edits
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -105,30 +105,39 @@ Feature: Patient Details
         And select a study in All Studies
         When click "Patient details" feature nav menu option
         Then verify Date of birth card is displayed for 3692
+    
+    #11313
+    @patientDetail
+    Scenario: Given Verify_PD_Weight_modal_tab_displayed and Edit_Weight_form_{1} When Click_PD_Weight_Save_button Then Verify_PD_Weight_modal_tab_saved_edits
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Patient details" feature nav menu option
+        When click the Edit button for "Weight" card
+        And Fill out "Weight" modal include in study no
+        And Save button is clicked
+        And close button is clicked
+        Then Verify Weight not included in study
 
     #11310
-    @patientDetail @11310
+    @patientDetail
     Scenario: Given Verify_PD_Gender_modal_tab_displayed and Edit_Gender_form_{1} When Click_PD_Gender_Save_button Then Verify_PD_Gender_modal_tab_saved_edits
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        And click the Edit button for "Gender" card
-        When Fill out "Gender" modal include in study no
+        When click the Edit button for "Gender" card
+        And Fill out "Gender" modal include in study no
         And Save button is clicked
         And close button is clicked
         Then Verify Gender not included in study
 
     #11311
-    @patientDetail @11311 @test
+    @patientDetail
     Scenario: Given Verify_PD_Gender_modal_tab_displayed and Edit_Gender_form_{2} When Click_PD_Gender_Save_button Then Verify_PD_Gender_modal_tab_saved_edits
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Patient details" feature nav menu option
-        And click the Edit button for "Gender" card
-        When Fill out Gender modal  
+        When click the Edit button for "Gender" card
+        And Fill out Gender modal  
         And Save button is clicked
         And close button is clicked
         Then Verify Gender data is saved
-
-
- 

@@ -436,7 +436,6 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.DOB_card_Visible_for_GST_value)).to_have_text("No")
 
-
     def verify_gender_not_included_in_study(self):
         expect(self.page.locator(self.Gender_card_Included_in_study)).to_be_visible()
         expect(self.page.locator(self.Gender_card_Included_in_study_value)).to_have_text("No")
@@ -466,7 +465,6 @@ class Cosmos_PatientDetails:
         self.page.locator(self.Gender_Modal_Visible_for_support_role_No_radio_button).click()
         #fills out visible for GST = No
         self.page.locator(self.Gender_Modal_Visible_for_GST_No_radio_button).click()
-        
 
     def verify_gender_data_is_saved(self):
         #verifies data saved from the Gender modal are reflected on the date of birth card
@@ -484,5 +482,7 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.Gender_card_Visible_for_support_role_value)).to_have_text("No")
         expect(self.page.locator(self.Gender_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.Gender_card_Visible_for_GST_value)).to_have_text("No")
-
-
+    
+    def verify_weight_not_included_in_study(self):
+        expect(self.page.locator(self.Weight_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Included_in_study_value)).to_have_text("No")
