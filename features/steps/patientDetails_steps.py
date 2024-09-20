@@ -179,7 +179,6 @@ def click_save_button(context):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-
 @when('close button is clicked')
 def click_close_button(context):
     try:
@@ -202,9 +201,9 @@ def verify_date_of_birth_saved(context):
     except Exception as e:
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
-        
+
 @when('Fill out {tab} modal include in study no')
-def fill_out_gender_include_in_study_no(context, tab):
+def fill_out_modal_include_in_study_no(context, tab):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
@@ -217,12 +216,11 @@ def fill_out_gender_include_in_study_no(context, tab):
             time.sleep(3)
             cosmos_patient_details.selectIncludeInStudyOption(tab,"No")
 
-
     except Exception as e:
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-@Then('Verify Gender not included in study')
+@then('Verify Gender not included in study')
 def verify_Gender_not_included_in_study(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -244,13 +242,24 @@ def fill_out_gender_modal(context):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-
-@Then('Verify Gender data is saved')
+@then('Verify Gender data is saved')
 def Verify_gender_data_is_saved(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
         cosmos_patient_details.verify_gender_data_is_saved()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('Verify Weight not included in study')
+def verify_Weight_not_included_in_study(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        # Call the verify_weight_not_included_in_study method to perform the actions
+        cosmos_patient_details.verify_weight_not_included_in_study()
 
     except Exception as e:
         print(f"Test failed: {e}")
