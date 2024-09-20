@@ -3,7 +3,7 @@ from behave import *
 from pages.Cosmos_PatientDetails import Cosmos_PatientDetails
 from playwright.sync_api import expect
 
-@given('Date of birth card is displayed for {case}')
+@when('Date of birth card is displayed for {case}')
 @then('verify Date of birth card is displayed for {case}')
 def verify_dob_card(context, case):
     try:
@@ -32,7 +32,7 @@ def verify_patient_details_page(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@given('Date of birth modal tab is displayed')
+@when('Date of birth modal tab is displayed')
 @then('verify Date of birth modal tab is displayed')
 def verify_dob_modal_tab(context):
     try:
@@ -46,7 +46,6 @@ def verify_dob_modal_tab(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@given('click the Edit button for {card} card')
 @when('click the Edit button for {card} card')
 def click_Edit_button_for_card(context, card):
     try:
@@ -126,6 +125,33 @@ def click_tab_in_patient_details_modal(context,tab):
         # click the tab from the Patient Details modal
         patientDetails.clickTabFromPatientDetailsModal(tab)
     
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@when('click the Patient Details Save button')
+def click_Patient_Details_Save_button(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        # click the Save button
+        patientDetails.clickPatientDetailsModalSaveButton()
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise  # Raise the exception to ensure failure is reported
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('Verify the save indicator is not shown for the {tab} tab')
+def verify_saved_indicator_is_not_shown(context,tab):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        patientDetails = Cosmos_PatientDetails(context.page)
+        #Assert the saved indicator appears on the tab
+        time.sleep(5)
+        print(patientDetails.checkSavedIndicatorIsVisible(tab))
+        assert (not(patientDetails.checkSavedIndicatorIsVisible(tab)))        
+
     except Exception as e:
         print(f"Test failed: {e}")
         raise  # Raise the exception to ensure failure is reported
