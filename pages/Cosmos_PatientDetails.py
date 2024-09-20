@@ -181,8 +181,8 @@ class Cosmos_PatientDetails:
         self.Height_Modal_Study_values = "//div[@id='Height-3']//div[@data-testid='featureFormComponent-studyValues']//label/h6"
         self.Height_Modal_Study_values_Value = "//div[@id='Height-3']//div[@data-testid='featureFormComponent-studyValues']//label/p"
         self.Height_Modal_Mandatory_in_study = "//div[@id='Height-3']//div[@data-testid='featureFormComponent-mandatoryInStudy']//label/h6"
-        self.Height_Modal_Mandatory_in_study_Yes_radio_button = "//input[@name ='HeightSection-mandatoryInStudy' and  @value='Yes']"
-        self.Height_Modal_Mandatory_in_study_No_radio_button = "//input[@name ='HeightSection-mandatoryInStudy' and  @value='No']"
+        self.Height_Modal_Mandatory_in_study_Mandatory_radio_button = "//input[@name ='HeightSection-mandatoryInStudy' and  @value='Mandatory']"
+        self.Height_Modal_Mandatory_in_study_Optional_radio_button = "//input[@name ='HeightSection-mandatoryInStudy' and  @value='Optional']"
         self.Height_Modal_Visible_for_CRA = "//div[@id='Height-3']//div[@data-testid='featureFormComponent-visibleForCRA']//label/h6"
         self.Height_Modal_Visible_for_CRA_Yes_radio_button = "//input[@name ='HeightSection-visibleForCRA' and  @value='Yes']"
         self.Height_Modal_Visible_for_CRA_No_radio_button = "//input[@name ='HeightSection-visibleForCRA' and  @value='No']"
@@ -515,3 +515,36 @@ class Cosmos_PatientDetails:
         expect(self.page.locator(self.Weight_card_Visible_for_support_role_value)).to_have_text("No")
         expect(self.page.locator(self.Weight_card_Visible_for_GST_value)).to_be_visible()
         expect(self.page.locator(self.Weight_card_Visible_for_GST_value)).to_have_text("No")
+
+    def verify_height_not_included_in_study(self):
+        expect(self.page.locator(self.Height_card_Included_in_study)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Included_in_study_value)).to_have_text("No")
+    
+    def fill_out_height_modal(self):
+        # Fills out Included in study = yes 
+        self.page.locator(self.Height_Modal_Include_in_study_Yes_radio_button).click()
+        # Fills out Mandatory in study = Mandatory
+        self.page.locator(self.Height_Modal_Mandatory_in_study_Mandatory_radio_button).click()
+        # Fills out Visible for CRA = No
+        self.page.locator(self.Height_Modal_Visible_for_CRA_No_radio_button).click()
+        # Fills out Visible for Support Role = No
+        self.page.locator(self.Height_Modal_Visible_for_support_role_No_radio_button).click()
+        # Fills out Visible for GST = No
+        self.page.locator(self.Height_Modal_Visible_for_GST_No_radio_button).click()
+    
+    def verify_height_data_is_saved(self):
+        # Verifies data saved from the Height modal are reflected on the Height card
+        expect(self.page.locator(self.Height_card_Included_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Included_in_study_value)).to_have_text("Yes")
+        expect(self.page.locator(self.Height_card_Source_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Source_value)).to_have_text("Manual")
+        expect(self.page.locator(self.Height_card_Study_Values_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Study_Values_value)).to_have_text("Cm")
+        expect(self.page.locator(self.Height_card_Mandatory_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Mandatory_in_study_value)).to_have_text("Mandatory")
+        expect(self.page.locator(self.Height_card_Visible_for_CRA_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Visible_for_CRA_value)).to_have_text("No")
+        expect(self.page.locator(self.Height_card_Visible_for_support_role_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Visible_for_support_role_value)).to_have_text("No")
+        expect(self.page.locator(self.Height_card_Visible_for_GST_value)).to_be_visible()
+        expect(self.page.locator(self.Height_card_Visible_for_GST_value)).to_have_text("No")

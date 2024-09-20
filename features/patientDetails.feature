@@ -129,6 +129,30 @@ Feature: Patient Details
         And Save button is clicked
         And close button is clicked
         Then verify Weight data is saved
+    
+    #11318
+    @patientDetail
+    Scenario: Given Verify_PD_Height_modal_tab_displayed and Edit_Height_form_{1} When Click_PD_Height_Save_button Then Verify_PD_Height_modal_tab_saved_edits
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Patient details" feature nav menu option
+        When click the Edit button for "Height" card
+        And fill out "Height" modal include in study no
+        And Save button is clicked
+        And close button is clicked
+        Then verify Height not included in study
+
+    #11319
+    @patientDetail @cosmos11319
+    Scenario: Given Verify_PD_Height_modal_tab_displayed and Edit_Height_form_{2} When Click_PD_Height_Save_button Then Verify_PD_Height_modal_tab_saved_edits
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Patient details" feature nav menu option
+        When click the Edit button for "Height" card
+        And fill out Height modal  
+        And Save button is clicked
+        And close button is clicked
+        Then verify Height data is saved
 
     #11310
     @patientDetail
