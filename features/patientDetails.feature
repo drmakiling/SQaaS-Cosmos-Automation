@@ -119,7 +119,7 @@ Feature: Patient Details
         Then Verify Gender not included in study
 
     #11311
-    @patientDetail @11311
+    @patientDetail @11311 @test
     Scenario: Given Verify_PD_Gender_modal_tab_displayed and Edit_Gender_form_{2} When Click_PD_Gender_Save_button Then Verify_PD_Gender_modal_tab_saved_edits
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
