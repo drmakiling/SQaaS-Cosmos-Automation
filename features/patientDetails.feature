@@ -113,10 +113,22 @@ Feature: Patient Details
         And create or select a case a study
         And click "Patient details" feature nav menu option
         When click the Edit button for "Weight" card
-        And Fill out "Weight" modal include in study no
+        And fill out "Weight" modal include in study no
         And Save button is clicked
         And close button is clicked
-        Then Verify Weight not included in study
+        Then verify Weight not included in study
+    
+    #11314
+    @patientDetail
+    Scenario: Given Verify_PD_Weight_modal_tab_displayed and Edit_Weight_form_{2} When Click_PD_Weight_Save_button Then Verify_PD_Weight_modal_tab_saved_edits
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Patient details" feature nav menu option
+        When click the Edit button for "Weight" card
+        And fill out Weight modal  
+        And Save button is clicked
+        And close button is clicked
+        Then verify Weight data is saved
 
     #11310
     @patientDetail
@@ -128,7 +140,7 @@ Feature: Patient Details
         And Fill out "Gender" modal include in study no
         And Save button is clicked
         And close button is clicked
-        Then Verify Gender not included in study
+        Then verify Gender not included in study
 
     #11311
     @patientDetail
@@ -140,4 +152,4 @@ Feature: Patient Details
         And Fill out Gender modal  
         And Save button is clicked
         And close button is clicked
-        Then Verify Gender data is saved
+        Then verify Gender data is saved

@@ -202,7 +202,7 @@ def verify_date_of_birth_saved(context):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-@when('Fill out {tab} modal include in study no')
+@when('fill out {tab} modal include in study no')
 def fill_out_modal_include_in_study_no(context, tab):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -220,7 +220,7 @@ def fill_out_modal_include_in_study_no(context, tab):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-@then('Verify Gender not included in study')
+@then('verify Gender not included in study')
 def verify_Gender_not_included_in_study(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -231,7 +231,7 @@ def verify_Gender_not_included_in_study(context):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-@when('Fill out Gender modal')
+@when('fill out Gender modal')
 def fill_out_gender_modal(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -242,7 +242,7 @@ def fill_out_gender_modal(context):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-@then('Verify Gender data is saved')
+@then('verify Gender data is saved')
 def Verify_gender_data_is_saved(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -253,13 +253,37 @@ def Verify_gender_data_is_saved(context):
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
 
-@then('Verify Weight not included in study')
+@then('verify Weight not included in study')
 def verify_Weight_not_included_in_study(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
         cosmos_patient_details = Cosmos_PatientDetails(context.page)
         # Call the verify_weight_not_included_in_study method to perform the actions
         cosmos_patient_details.verify_weight_not_included_in_study()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+@when('fill out Weight modal')
+def fill_out_weight_modal(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        # Call the fill_out_weight_modal method to perform the actions
+        cosmos_patient_details.fill_out_weight_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('verify Weight data is saved')
+def verify_weight_data_is_saved(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        # Call the verify_weight_data_is_saved method to perform the actions
+        cosmos_patient_details.verify_weight_data_is_saved()
 
     except Exception as e:
         print(f"Test failed: {e}")

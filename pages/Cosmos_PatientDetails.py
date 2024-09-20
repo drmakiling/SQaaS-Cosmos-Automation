@@ -113,8 +113,8 @@ class Cosmos_PatientDetails:
         self.Weight_card_Source_value_Mandatory = "//div[@data-testid='weight-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div[normalize-space()='Mandatory']"
         self.Weight_card_Study_Values = "//div[@data-testid='weight-card']//p[contains(text(), 'Study values')]"
         self.Weight_card_Study_Values_value = "//div[@data-testid='weight-card']//p[contains(text(), 'Study values')]//parent::div/following-sibling::div/p"
-        self.Weight_card_Madatory_in_study = "//div[@data-testid='weight-card']//p[contains(text(), 'Mandatory in study')]"
-        self.Weight_card_Madatory_in_study_value = "//div[@data-testid='weight-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
+        self.Weight_card_Mandatory_in_study = "//div[@data-testid='weight-card']//p[contains(text(), 'Mandatory in study')]"
+        self.Weight_card_Mandatory_in_study_value = "//div[@data-testid='weight-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
         self.Weight_card_Visible_for_CRA = "//div[@data-testid='weight-card']//p[contains(text(), 'Visible for CRA')]"
         self.Weight_card_Visible_for_CRA_value = "//div[@data-testid='weight-card']//p[contains(text(), 'Visible for CRA')]//parent::div/following-sibling::div/p"
         self.Weight_card_Visible_for_support_role = "//div[@data-testid='weight-card']//p[contains(text(), 'Visible for support role')]"
@@ -134,8 +134,8 @@ class Cosmos_PatientDetails:
         self.Weight_Modal_Study_values = "//div[@id='Weight-2']//div[@data-testid='featureFormComponent-studyValues']//label/h6"
         self.Weight_Modal_Study_values_Value= "//div[@id='Weight-2']//div[@data-testid='featureFormComponent-studyValues']//label/p"
         self.Weight_Modal_Mandatory_in_study = "//div[@id='Weight-2']//div[@data-testid='featureFormComponent-mandatoryInStudy']//label/h6"
-        self.Weight_Modal_Mandatory_in_study_Yes_radio_button = "//input[@name ='WeightSection-mandatoryInStudy' and  @value='Yes']"
-        self.Weight_Modal_Mandatory_in_study_No_radio_button = "//input[@name ='WeightSection-mandatoryInStudy' and  @value='No']"
+        self.Weight_Modal_Mandatory_in_study_Mandatory_radio_button = "//input[@name ='WeightSection-mandatoryInStudy' and  @value='Mandatory']"
+        self.Weight_Modal_Mandatory_in_study_Optional_radio_button = "//input[@name ='WeightSection-mandatoryInStudy' and  @value='Optional']"
         self.Weight_Modal_Visible_for_CRA = "//div[@id='Weight-2']//div[@data-testid='featureFormComponent-visibleForCRA']//label/h6"
         self.Weight_Modal_Visible_for_CRA_Yes_radio_button = "//input[@name ='WeightSection-visibleForCRA' and  @value='Yes']"
         self.Weight_Modal_Visible_for_CRA_No_radio_button = "//input[@name ='WeightSection-visibleForCRA' and  @value='No']"
@@ -160,8 +160,8 @@ class Cosmos_PatientDetails:
         self.Height_card_Source_value_Mandatory = "//div[@data-testid='height-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div[normalize-space()='Mandatory']"
         self.Height_card_Study_Values = "//div[@data-testid='height-card']//p[contains(text(), 'Study values')]"
         self.Height_card_Study_Values_value = "//div[@data-testid='height-card']//p[contains(text(), 'Study values')]//parent::div/following-sibling::div/p"
-        self.Height_card_Madatory_in_study = "//div[@data-testid='height-card']//p[contains(text(), 'Mandatory in study')]"
-        self.Height_card_Madatory_in_study_value = "//div[@data-testid='height-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
+        self.Height_card_Mandatory_in_study = "//div[@data-testid='height-card']//p[contains(text(), 'Mandatory in study')]"
+        self.Height_card_Mandatory_in_study_value = "//div[@data-testid='height-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
         self.Height_card_Visible_for_CRA = "//div[@data-testid='height-card']//p[contains(text(), 'Visible for CRA')]"
         self.Height_card_Visible_for_CRA_value = "//div[@data-testid='height-card']//p[contains(text(), 'Visible for CRA')]//parent::div/following-sibling::div/p"
         self.Height_card_Visible_for_support_role = "//div[@data-testid='height-card']//p[contains(text(), 'Visible for support role')]"
@@ -206,8 +206,8 @@ class Cosmos_PatientDetails:
         self.Race_card_Source_value_Mandatory = "//div[@data-testid='race-card']//p[contains(text(), 'Source')]//parent::div/following-sibling::div[normalize-space()='Mandatory']"
         self.Race_card_Study_Values = "//div[@data-testid='race-card']//p[contains(text(), 'Study values')]"
         self.Race_card_Study_Values_value = "//div[@data-testid='race-card']//p[contains(text(), 'Study values')]//parent::div/following-sibling::div/p"
-        self.Race_card_Madatory_in_study = "//div[@data-testid='race-card']//p[contains(text(), 'Mandatory in study')]"
-        self.Race_card_Madatory_in_study_value = "//div[@data-testid='race-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
+        self.Race_card_Mandatory_in_study = "//div[@data-testid='race-card']//p[contains(text(), 'Mandatory in study')]"
+        self.Race_card_Mandatory_in_study_value = "//div[@data-testid='race-card']//p[contains(text(), 'Mandatory in study')]//parent::div/following-sibling::div/p"
         self.Race_card_Visible_for_CRA = "//div[@data-testid='race-card']//p[contains(text(), 'Visible for CRA')]"
         self.Race_card_Visible_for_CRA_value = "//div[@data-testid='race-card']//p[contains(text(), 'Visible for CRA')]//parent::div/following-sibling::div/p"
         self.Race_card_Visible_for_support_role = "//div[@data-testid='race-card']//p[contains(text(), 'Visible for support role')]"
@@ -446,7 +446,7 @@ class Cosmos_PatientDetails:
          #fills out source = manual 
         self.page.locator(self.Gender_Modal_Source_Manual_radio_button).click()
         #fills out study values = female if something is chose it will delete it and save then choose female
-        if (self.page.locator(self.Gender_Modal_Study_values_Dropdown_choice_X_button).is_visible):
+        if (self.page.locator(self.Gender_Modal_Study_values_Dropdown_choice_X_button).is_visible()):
             self.page.locator(self.Gender_Modal_Study_values_Dropdown_choice_X_button).click()
             self.page.locator(self.Save_Button).click()
             time.sleep(3)
@@ -457,7 +457,7 @@ class Cosmos_PatientDetails:
             self.page.locator(self.Gender_Modal_Study_values_Dropdown).click()
             self.page.keyboard.press("ArrowDown")
             self.page.keyboard.press("Enter")
-        #fills out madatory in study = Mandatory
+        #fills out mandatory in study = Mandatory
         self.page.locator(self.Gender_Modal_Mandatory_in_study_Mandatory_radio_button).click()
         #fills out visible for CRA = No
         self.page.locator(self.Gender_Modal_Visible_for_CRA_No_radio_button).click()
@@ -486,3 +486,32 @@ class Cosmos_PatientDetails:
     def verify_weight_not_included_in_study(self):
         expect(self.page.locator(self.Weight_card_Included_in_study)).to_be_visible()
         expect(self.page.locator(self.Weight_card_Included_in_study_value)).to_have_text("No")
+
+    def fill_out_weight_modal(self):
+        # Fills out Included in study = yes 
+        self.page.locator(self.Weight_Modal_Include_in_study_Yes_radio_button).click()
+        # Fills out Mandatory in study = Mandatory
+        self.page.locator(self.Weight_Modal_Mandatory_in_study_Mandatory_radio_button).click()
+        # Fills out Visible for CRA = No
+        self.page.locator(self.Weight_Modal_Visible_for_CRA_No_radio_button).click()
+        # Fills out Visible for Support Role = No
+        self.page.locator(self.Weight_Modal_Visible_for_support_role_No_radio_button).click()
+        # Fills out Visible for GST = No
+        self.page.locator(self.Weight_Modal_Visible_for_GST_No_radio_button).click()
+
+    def verify_weight_data_is_saved(self):
+        # Verifies data saved from the Weight modal are reflected on the Weight card
+        expect(self.page.locator(self.Weight_card_Included_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Included_in_study_value)).to_have_text("Yes")
+        expect(self.page.locator(self.Weight_card_Source_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Source_value)).to_have_text("Manual")
+        expect(self.page.locator(self.Weight_card_Study_Values_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Study_Values_value)).to_have_text("Kg")
+        expect(self.page.locator(self.Weight_card_Mandatory_in_study_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Mandatory_in_study_value)).to_have_text("Mandatory")
+        expect(self.page.locator(self.Weight_card_Visible_for_CRA_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Visible_for_CRA_value)).to_have_text("No")
+        expect(self.page.locator(self.Weight_card_Visible_for_support_role_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Visible_for_support_role_value)).to_have_text("No")
+        expect(self.page.locator(self.Weight_card_Visible_for_GST_value)).to_be_visible()
+        expect(self.page.locator(self.Weight_card_Visible_for_GST_value)).to_have_text("No")
