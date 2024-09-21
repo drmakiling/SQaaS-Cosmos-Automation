@@ -323,3 +323,39 @@ def verify_height_data_is_saved(context):
     except Exception as e:
         print(f"Test failed: {e}")
         time.sleep(99999)  # Pause to keep the browser open
+
+@then('verify Race not included in study')
+def verify_race_not_included_in_study(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        # Call the verify_race_not_included_in_study method to perform the actions
+        cosmos_patient_details.verify_race_not_included_in_study()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+@when('fill out Race modal')
+def fill_out_race_modal(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        # Call the fill_out_race_modal method to perform the actions
+        cosmos_patient_details.fill_out_race_modal()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('verify Race data is saved')
+def verify_race_data_is_saved(context):
+    try:
+        # Instantiate Cosmos_PatientDetails with the page object from the context
+        cosmos_patient_details = Cosmos_PatientDetails(context.page)
+        # Call the verify_race_data_is_saved method to perform the actions
+        cosmos_patient_details.verify_race_data_is_saved()
+
+    except Exception as e:
+        print(f"Test failed: {e}")
+        time.sleep(99999)  # Pause to keep the browser open
