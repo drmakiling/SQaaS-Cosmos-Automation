@@ -75,7 +75,7 @@ def make_UnSaved_changes_to_Height_Modal(context):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@then('Verify the unsaved indicator appears for the {tab} tab')
+@then('verify the unsaved indicator appears for the {tab} tab')
 def verify_unsaved_indicator_appears(context,tab):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -130,19 +130,7 @@ def click_tab_in_patient_details_modal(context,tab):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@when('click the Patient Details Save button')
-def click_Patient_Details_Save_button(context):
-    try:
-        # Instantiate Cosmos_PatientDetails with the page object from the context
-        patientDetails = Cosmos_PatientDetails(context.page)
-        # click the Save button
-        patientDetails.clickPatientDetailsModalSaveButton()
-    except Exception as e:
-        print(f"Test failed: {e}")
-        raise  # Raise the exception to ensure failure is reported
-        time.sleep(99999)  # Pause to keep the browser open
-
-@then('Verify the save indicator is not shown for the {tab} tab')
+@then('verify the save indicator is not shown for the {tab} tab')
 def verify_saved_indicator_is_not_shown(context,tab):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -157,7 +145,7 @@ def verify_saved_indicator_is_not_shown(context,tab):
         raise  # Raise the exception to ensure failure is reported
         time.sleep(99999)  # Pause to keep the browser open
 
-@when('Fill out Date of birth modal')
+@when('fill out Date of birth modal')
 def fill_out_date_of_birth_modal(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
@@ -191,7 +179,7 @@ def click_close_button(context):
         time.sleep(99999)  # Pause to keep the browser open
 
 
-@then('Verify Date of birth data is saved')
+@then('verify Date of birth data is saved')
 def verify_date_of_birth_saved(context):
     try:
         # Instantiate Cosmos_PatientDetails with the page object from the context
