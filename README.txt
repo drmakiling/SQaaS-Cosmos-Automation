@@ -15,3 +15,4 @@ alias latest_report='xdg-open $(ls -t reports/behave_report_*.html | head -1)'
 source ~/.bashrc
 # to open recently created report 
 latest_report
+

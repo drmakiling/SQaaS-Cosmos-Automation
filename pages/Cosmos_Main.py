@@ -20,7 +20,17 @@ class Cosmos_Main:
         self.assign_team = "//button[contains(text(), 'Assign team')]"
         self.existing_form = "((//h6[text()='My Studies']//ancestor::*[last()-7]//following-sibling::div)[2]//div[@data-testid='study-card'])[1]"
         self.existing_form_all_studies = "((//h6[text()='All Studies']//ancestor::*[last()-7]//following-sibling::div)[2]//div[@data-testid='study-card'])[1]"
-
+        self.create_new_study_button = "//button[contains(@data-testid, 'btn-create-new-study')]"
+        self.create_from_blank_card = "//h3[contains(@data-testid, 'card-create-from-blank')]"
+        self.study_name_field = "//input[@id=':r4:']"
+        self.create_button = "//button[contains(text(), 'Create')]"
+        self.assign_user_field = "(//input[contains(@aria-label, 'Search for name or email')])[1]"
+        self.assign_user_option = "((//div[@id='simple-tabpanel-0'])[1]//span)[4]"
+        self.assign_team_button = "//button[contains(text(), 'Assign team')]"
+        self.implementation_lead_textbox = "//p[contains(text(), 'Implementation Lead')]/following-sibling::div//input[contains(@aria-label, 'Search for name or email')]"
+        self.imple_lead1_option = "//p[contains(text(), 'Implementation Lead')]/following-sibling::div//span[contains(text(),'COSMOS IMPLE LEAD1')]"
+        self.ecoa_textbox = "//p[contains(text(), 'eCOA')]/following-sibling::div//input[contains(@aria-label, 'Search for name or email')]"
+        self.ecoa_ba1_option = "//p[contains(text(), 'eCOA')]/following-sibling::div//span[contains(text(),'BA1')]"
 
     def create_study(self):
         # Click on the 'Create New Study' button
@@ -59,3 +69,27 @@ class Cosmos_Main:
         if self.page.locator(self.existing_form_all_studies).is_visible():
             # If the existing form is found, click on it
             wait_and_click_element(self.page, self.existing_form_all_studies)
+
+    def create_study_from_blank(self):
+        wait_and_click_element(self.page, self.create_new_study_button)
+        wait_and_click_element(self.page, self.create_from_blank_card)
+
+        # Fill in the study name
+        wait_for_element(self.page, self.study_name_field)  # Ensure the field is visible
+        self.page.fill(self.study_name_field, f"test {str(time.time())}")
+
+        wait_and_click_element(self.page, self.create_button)
+
+        wait_and_click_element(self.page, self.assign_user_field)
+        self.page.fill(self.assign_user_field, "cos")
+        wait_and_click_element(self.page, self.assign_user_option)
+
+        wait_and_click_element(self.page, self.implementation_lead_textbox)
+        self.page.fill(self.assign_user_field, "cos")  # Reuse the assign_user_field
+        wait_and_click_element(self.page, self.imple_lead1_option)
+
+        wait_and_click_element(self.page, self.ecoa_textbox)
+        self.page.fill(self.assign_user_field, "cos")  # Reuse the assign_user_field
+        wait_and_click_element(self.page, self.ecoa_ba1_option)
+
+        wait_and_click_element(self.page, self.assign_team_button)
