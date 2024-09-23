@@ -1,6 +1,6 @@
 environments/**/* 
 reports/*.html
-reports/screenshots/*.png
+reports/screenshots/*
 
 pages/__pycache__
 utils/__pycache__
