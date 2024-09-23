@@ -69,3 +69,16 @@ def select_study_all_studies(context):
         print(f"Test failed: {e}")
         raise
         time.sleep(99999)  # Pause to keep the browser open
+
+@given('config alert is {switch}')
+@when('config alert is {switch}')
+def config_alert_switch(context,switch : str):
+    switch = switch.lower().strip('"').strip()
+
+    if(switch == 'yes'):
+        if(not(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible())):
+            context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
+    elif(switch == 'no'):
+        if(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible()):
+            context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
+    time.sleep(2)
