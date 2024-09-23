@@ -10,6 +10,7 @@ class Cosmos_GroupedActivites:
         self.featurePageTitle = "//h6[text()='Grouped activities']"
         self.firstRecord = "//div[@data-testid='datagrid-table']//div[@role='row' and contains(@class, 'MuiDataGrid-row')][1]"
         self.firstRecordDeleteButton = "//button[@data-testid='action_icon_1'][1]"
+        self.featureToggle = "//h6[text()='Grouped activities']/following-sibling::div//input[@type = 'checkbox']"
 
         #Feature page empty state message
         self.emptyStateMessage = "//p[text()='There are no records yet.']"
@@ -24,6 +25,10 @@ class Cosmos_GroupedActivites:
         self.delete_Confirmation_message = "//div[@role='dialog']//span[text()='Would you like to delete this grouped activity?']"
         self.delete_Confirmation_message_Yes = "//div[@role='dialog']//button[text()='Yes']"
         self.delete_Confirmation_message_No = "//div[@role='dialog']//button[text()='No']"
+
+        #Add acivity modal
+        self.sequenceID = "//input[@name='sequenceIdName']"
+        self.orderInSequenece = "//input[@name='orderInSequence']"
 
         self.Save_button = "//button[text() = 'Save']"
         self.Save_and_add_more_button = "//button[text() = 'Save and add more']"
@@ -50,4 +55,16 @@ class Cosmos_GroupedActivites:
         expect(self.page.locator(self.Grouped_Activities_feature_toggle)).to_be_visible()
         expect(self.page.locator(self.featurePageTitle)).to_be_visible()
         expect(self.page.locator(self.add_activity_button)).to_be_visible()
+
+    def select_Request_Code_Type(self, type : str):
+        type = type.strip('"').capitalize()
+        self.page.locator("//h6[text()='Request code type']/following-sibling::div//input[@value = '"+ type + "']")
+
+    def input_SequenceID(self, name : str):
+        name = name.strip('"')
+        self.page.locator(self.sequenceID).fill(name)
+
+    def input_Order_Sequence(self, num : str):
+        self.page.locator(self.orderInSequenece).fill(num)
+
         
