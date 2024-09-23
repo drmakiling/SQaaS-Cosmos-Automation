@@ -75,10 +75,10 @@ def select_study_all_studies(context):
 def config_alert_switch(context,switch : str):
     switch = switch.lower().strip('"').strip()
 
-    if(switch == 'yes'):
+    if(switch == 'on'):
         if(not(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible())):
             context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
-    elif(switch == 'no'):
+    elif(switch == 'off'):
         if(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible()):
             context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
     time.sleep(2)
