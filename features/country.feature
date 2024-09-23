@@ -96,7 +96,7 @@ Feature: Country
         Then verify cancel popup is displayed
     
     
-    @regression
+    @regression @countryregres
     Scenario: Country_regression_run
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
