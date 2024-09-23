@@ -5,6 +5,7 @@ from pages.common_Login import Cosmos_Login_Page
 import os
 from dotenv import load_dotenv
 from behave import given
+from playwright.sync_api import Page, expect
 
 
 @given('user is on "{env}"')
@@ -82,3 +83,25 @@ def config_alert_switch(context,switch : str):
         if(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible()):
             context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
     time.sleep(2)
+
+@then('Verify Cancel modal')
+def verify_Cancel_Modal(context):
+    try:
+        expect(context.page.locator("//span[text() = 'Would you like to cancel?']")).to_be_visible()
+        expect(context.page.locator("//span[text() = 'Any updates will not be saved']")).to_be_visible()
+        expect(context.page.locator("//button[text() = 'Yes']")).to_be_visible()
+        expect(context.page.locator("//button[text() = 'No']")).to_be_visible()
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise
+        time.sleep(99999)  # Pause to keep the browser open
+
+@then('click the {option} button on the Cancel modal')
+def click_Yes_or_No_cancel_button(context,option : str):
+    try:
+        option = option.strip('"').strip().capitalize()
+        context.page.locator("//button[contains(text(), '" + option + "')]").click()
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise
+        time.sleep(99999)  # Pause to keep the browser open
