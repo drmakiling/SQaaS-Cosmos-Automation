@@ -30,3 +30,14 @@ Feature: Grouped Activities
         Then Verify Cancel modal
         And click the "Yes" button on the Cancel modal
         Then Verify Grouped activities feature page
+
+    @19369
+    @groupedActivities
+    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Grouped activities" feature nav menu option
+        When the Add Activity button is clicked
+        And unsaved changes are made to the Add activity modal
+        And Add activity Modal Cancel button is clicked
+        Then Verify Cancel modal
