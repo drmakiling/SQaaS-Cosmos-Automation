@@ -2,6 +2,7 @@ import re, time
 from behave import *
 from pages.Cosmos_Main import Cosmos_Main
 from pages.common_Login import Cosmos_Login_Page
+from pages.SharedFunctions import sharedFunctions
 import os
 from dotenv import load_dotenv
 from behave import given
@@ -53,8 +54,8 @@ def create_case_study(context):
 @given('click {feature} feature nav menu option')
 @when('click {feature} feature nav menu option')
 def clickFeatureNavOption(context,feature):
-    print("This is what prints: " + feature)
-    context.page.locator("//p[contains(text(), " + feature + ")]").click()
+    sharedFunction = sharedFunctions(context.page)
+    sharedFunction.clickFeatureNavOption(feature)
 
 @given('select a study in All Studies')
 def select_study_all_studies(context):
@@ -74,23 +75,14 @@ def select_study_all_studies(context):
 @given('config alert is {switch}')
 @when('config alert is {switch}')
 def config_alert_switch(context,switch : str):
-    switch = switch.lower().strip('"').strip()
-
-    if(switch == 'on'):
-        if(not(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible())):
-            context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
-    elif(switch == 'off'):
-        if(context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]").is_visible()):
-            context.page.locator("//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]").click()
-    time.sleep(2)
+    sharedFunction = sharedFunctions(context.page)
+    sharedFunction.config_Alert_Switch(switch)
 
 @then('Verify Cancel modal')
 def verify_Cancel_Modal(context):
     try:
-        expect(context.page.locator("//span[text() = 'Would you like to cancel?']")).to_be_visible()
-        expect(context.page.locator("//span[text() = 'Any updates will not be saved']")).to_be_visible()
-        expect(context.page.locator("//button[text() = 'Yes']")).to_be_visible()
-        expect(context.page.locator("//button[text() = 'No']")).to_be_visible()
+        sharedFunction = sharedFunctions(context.page)
+        sharedFunction.ValidateSingleTabCancelModal()
     except Exception as e:
         print(f"Test failed: {e}")
         raise
@@ -99,8 +91,8 @@ def verify_Cancel_Modal(context):
 @then('click the {option} button on the Cancel modal')
 def click_Yes_or_No_cancel_button(context,option : str):
     try:
-        option = option.strip('"').strip().capitalize()
-        context.page.locator("//button[contains(text(), '" + option + "')]").click()
+        sharedFunction = sharedFunctions(context.page)
+        sharedFunction.click_Yes_or_No_Cancel_Modal_button(option)
     except Exception as e:
         print(f"Test failed: {e}")
         raise

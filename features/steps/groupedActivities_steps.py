@@ -4,8 +4,8 @@ from pages.Cosmos_GroupedActivities import Cosmos_GroupedActivites
 from playwright.sync_api import expect
 import random
 
-@then('Grouped Activities feature page is empty with config alert {switch}')
-def verify_Grouped_Activities_is_Empty(context,switch):
+@then('Grouped Activities feature page is empty')
+def verify_Grouped_Activities_is_Empty(context):
     try:
         # Instantiate Cosmos_GroupedActivities with the page object from the context
         patientGA = Cosmos_GroupedActivites(context.page)
