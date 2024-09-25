@@ -25,8 +25,8 @@ Feature: Grouped Activities
         And create or select a case a study
         And click "Grouped activities" feature nav menu option
         When the Add Activity button is clicked
-        And unsaved changes are made to the Add activity modal
-        And Add activity Modal Cancel button is clicked
+        And unsaved changes are made to the activity modal
+        And Activity Modal Cancel button is clicked
         Then Verify Cancel modal
         And click the "Yes" button on the Cancel modal
         Then Verify Grouped activities feature page
@@ -38,6 +38,35 @@ Feature: Grouped Activities
         And create or select a case a study
         And click "Grouped activities" feature nav menu option
         When the Add Activity button is clicked
-        And unsaved changes are made to the Add activity modal
-        And Add activity Modal Cancel button is clicked
+        And unsaved changes are made to the activity modal
+        And Activity Modal Cancel button is clicked
         Then Verify Cancel modal
+
+    @19370
+    @groupedActivities
+    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Grouped activities" feature nav menu option
+        When the Add Activity button is clicked
+        And unsaved changes are made to the activity modal
+        And the Save button is clicked
+        And the "Edit" button for the first record is clicked
+        And unsaved changes are made to the activity modal
+        And Activity Modal Cancel button is clicked
+        Then Verify Cancel modal
+
+    @19381
+    @groupedActivities
+    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Grouped activities" feature nav menu option
+        When the Add Activity button is clicked
+        And unsaved changes are made to the activity modal
+        And the Save button is clicked
+        And the "Delete" button for the first record is clicked
+        Then Verify delete Grouped Activities confirmation modal
+        When click the "Yes" button for the GA Delete Confirmation modal
+        Then Verify successfully "Deleted" message
+        Then verify GA record is deleted

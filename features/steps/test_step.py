@@ -97,3 +97,20 @@ def click_Yes_or_No_cancel_button(context,option : str):
         print(f"Test failed: {e}")
         raise
         time.sleep(99999)  # Pause to keep the browser open
+
+@Then('Verify successfully {message} message')
+def verify_Success_Message(context, message : str):
+    try:
+        message = message.lower().strip('"')
+        sharedFunction = sharedFunctions(context.page)
+        if message == "deleted":
+            expect(sharedFunction.page.locator(sharedFunction.successDeleteMessage)).to_be_visible()
+        elif message == "saved":
+            expect(sharedFunction.page.locator(sharedFunction.successSavedMessage)).to_be_visible()
+        else:
+            raise Exception("Wrong success message entered in verify_Success_Message function")
+        sharedFunction.successDeleteMessage
+    except Exception as e:
+        print(f"Test failed: {e}")
+        raise
+        time.sleep(99999)  # Pause to keep the browser open
