@@ -20,6 +20,10 @@ class sharedFunctions():
         #Study config alert toggle
         self.config_on = "//div[@data-testid='config-alert-toggle']//span[contains(@class,'Mui-checked')]"
         self.config_off = "//div[@data-testid='config-alert-toggle']//span[contains(@class,'MuiSwitch-root')]"
+        #Deleted successfully popup message
+        self.successDeleteMessage = "//div[contains(@class, 'MuiAlert-message') and text()='Information deleted successfully']"
+        #Saved successfully popup message
+        self.successSavedMessage = "//div[contains(@class, 'MuiAlert-message') and text()='Information saved successfully']"
 
     def ValidateSingleTabCancelModal(self):
         # Use wait_for_element for elements that are not clicked

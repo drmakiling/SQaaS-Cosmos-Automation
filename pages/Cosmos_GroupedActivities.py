@@ -9,8 +9,10 @@ class Cosmos_GroupedActivites:
         self.page = page  # Ensure page is set
         self.featurePageTitle = "//h6[text()='Grouped activities']"
         self.firstRecord = "//div[@data-testid='datagrid-table']//div[@role='row' and contains(@class, 'MuiDataGrid-row')][1]"
+        self.firstRecordEditButton = "//button[@data-testid='action_icon_0'][1]"
         self.firstRecordDeleteButton = "//button[@data-testid='action_icon_1'][1]"
         self.featureToggle = "//h6[text()='Grouped activities']/following-sibling::div//input[@type = 'checkbox']"
+        self.recordCount = "//p[contains(text(), 'records in the list')]"
 
         #Feature page empty state message
         self.emptyStateMessage = "//p[text()='There are no records yet.']"
@@ -40,7 +42,12 @@ class Cosmos_GroupedActivites:
     def delete_the_first_record(self):
         self.page.locator(self.firstRecord).hover()
         time.sleep(1)
-        self.page.locator(self.delete_the_first_record).click()
+        self.page.locator(self.firstRecordDeleteButton).click()
+
+    def edit_the_first_record(self):
+        self.page.locator(self.firstRecord).hover()
+        time.sleep(1)
+        self.page.locator(self.firstRecordEditButton).click()
 
     def delete_all_records(self): 
         while (self.page.locator(self.firstRecord).is_visible()):
@@ -66,5 +73,15 @@ class Cosmos_GroupedActivites:
 
     def input_Order_Sequence(self, num : str):
         self.page.locator(self.orderInSequenece).fill(num)
+
+    def click_Activity_Save_Button(self):
+        self.page.locator(self.Save_button).click()
+
+    def click_Activity_Save_and_Add_More_Button(self):
+        self.page.locator(self.Save_and_add_more_button).click()
+
+    def get_Record_Count(self) -> int:
+        recordCountNum = self.page.locator(self.recordCount).inner_text().split()[0]
+        return int(recordCountNum)
 
         
