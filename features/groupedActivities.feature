@@ -1,8 +1,8 @@
+@groupedActivities
 Feature: Grouped Activities
 
     @19337
-    @groupedActivities
-    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_in_{StudyBA}_user and Draft_Study_{MyStudies} and Config_Alert_Off When Click_Grouped_activities_feature Then Verify_Grouped_activities_feature_page
+    Scenario: Draft_Study_{MyStudies} and Config_Alert_Off When Click_Grouped_activities_feature Then Verify_Grouped_activities_feature_page
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Grouped activities" feature nav menu option
@@ -10,8 +10,7 @@ Feature: Grouped Activities
         Then Grouped Activities feature page is empty
 
     @19364
-    @groupedActivities
-    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_in_{StudyBA}_user and Draft_Study_{MyStudies} and [Not] Config_Alert_Off When Click_Grouped_activities_feature Then Verify_Grouped_activities_feature_page
+    Scenario: Draft_Study_{MyStudies} and [Not] Config_Alert_Off When Click_Grouped_activities_feature Then Verify_Grouped_activities_feature_page
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Grouped activities" feature nav menu option
@@ -19,7 +18,6 @@ Feature: Grouped Activities
         Then Grouped Activities feature page is empty
 
     @19368
-    @groupedActivities
     Scenario: Given Verify_Grouped_Activities_Cancel_popup_displayed When Click_Yes_cancel_button Then Verify_Grouped_Activities_modal_closed
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -32,8 +30,7 @@ Feature: Grouped Activities
         Then Verify Grouped activities feature page
 
     @19369
-    @groupedActivities
-    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
+    Scenario: Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
         And click "Grouped activities" feature nav menu option
