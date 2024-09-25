@@ -40,7 +40,6 @@ Feature: Grouped Activities
         Then Verify Cancel modal
 
     @19370
-    @groupedActivities
     Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -54,7 +53,6 @@ Feature: Grouped Activities
         Then Verify Cancel modal
 
     @19381
-    @groupedActivities
     Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_In_{StudyBA}_User and Draft_Study_{MyStudies} and Click_on_{GroupedActivities}_feature and On_{Add}_modal_with_{Unsavedchanges}_edits When Click_Cancel_button Then Verify_Grouped_Activities_Cancel_p...
         Given the user is logged in as "STUDYBA1"
         And create or select a case a study
@@ -67,3 +65,14 @@ Feature: Grouped Activities
         When click the "Yes" button for the GA Delete Confirmation modal
         Then Verify successfully "Deleted" message
         Then verify GA record is deleted
+
+    @19383
+    Scenario: Given On_{Win}_{Chrome} and On_Cosmos_Site and Signed_in_{StudyBA}_user and Draft_Study_{MyStudies} and On_{Groupedactivities}_feature_with_data When Click_Grouped_activities_Delete_button Then Verify_GACT_Delete_confirmation_popup_displayed
+        Given the user is logged in as "STUDYBA1"
+        And create or select a case a study
+        And click "Grouped activities" feature nav menu option
+        When the Add Activity button is clicked
+        And unsaved changes are made to the activity modal
+        And the Save button is clicked
+        And the "Delete" button for the first record is clicked
+        Then Verify delete Grouped Activities confirmation modal
